@@ -1,0 +1,118 @@
+<resources>
+    <string name="app_name" translatable="false">AIINV</string>
+    <string name="action_settings">Configuracion</string>
+    <string name="hint_name">Nombre</string>
+    <string name="hint_user">Usuario</string>
+    <string name="hint_email">Correo</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="btn_sign_up">Registrarme</string>
+    <string name="btn_login">Ingresar</string>
+    <string name="err_msg_name">Ingrese su nombre</string>
+    <string name="err_msg_email">Ingrese un correo electronico valido</string>
+    <string name="err_msg_password">Ingrese su contraseña</string>
+    <string name="err_msg_user">Ingrese su usuario</string>
+
+
+
+    <string name="drawer_open">Abrir</string>
+    <string name="drawer_close">Cerrar</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_logout">Cerrar Sesión</string>
+    <string name="action_exit">Salir</string>
+
+    <!-- Cliente -->
+    <string name="action_edit">Editar Cliente</string>
+    <string name="action_delete">Eliminar Cliente</string>
+    <string name="action_add_lending">Agregar Prestamo</string>
+    <string name="action_add_payment">Agregar Pago</string>
+
+
+    <!-- Grupo -->
+    <string name="action_editG">Editar Grupo</string>
+    <string name="action_deleteG">Eliminar Grupo</string>
+
+
+    <!-- Placeholder -->
+    <string name="hint_cliente_nombre">Nombre</string>
+    <string name="hint_cliente_apellido">Apellido</string>
+    <string name="hint_cliente_correo">Correo</string>
+    <string name="hint_cliente_direccion">Dirección</string>
+    <string name="hint_cliente_telefono">Telefono</string>
+    <string name="hint_cliente_tipo">Tipo</string>
+    <string name="hint_cliente_comentario">Comentario</string>
+
+    <string name="hint_grupo_nombre">Nombre</string>
+    <string name="hint_grupo_descripcion">Descripcion</string>
+
+
+    <string name="error_msg_nombreGrupo">Ingrese el nombre del grupo</string>
+    <string name="error_msg_descripcion">Ingrese la descripcion del grupo</string>
+
+
+    <!-- Prestamos-->
+    <string name="hint_prestamo_fechainicial">Fecha de inicio</string>
+    <string name="hint_prestamo_fechafin">Fecha fin</string>
+    <string name="hint_prestamo_condicion">Condicion</string>
+    <string name="hint_prestamo_monto">Monto</string>
+    <string name="hint_prestamo_montopagado">Monto pagado</string>
+    <string name="hint_prestamo_montopendiente">Monto pendiente</string>
+    <string name="hint_prestamo_montoparcial">Monto parcial</string>
+
+    <string name="hint_prestamo_estado">Estado</string>
+    <string name="hint_prestamo_formapago">Forma de pago</string>
+    <string name="hint_prestamo_plazo">Plazo</string>
+    <string name="hint_prestamo_interes">Interes</string>
+    <string name="hint_prestamo_nopagos">No pagos</string>
+
+
+    <!-- Errores -->
+    <string name="error_msg_nombre">Ingrese el nombre del cliente</string>
+    <string name="error_msg_apellido">Ingrese el apellido del cliente</string>
+    <string name="error_msg_correo">Ingrese el correo del cliente</string>
+    <string name="error_msg_telefono">Ingrese el telefono del cliente</string>
+    <string name="error_msg_tipo">Ingrese el tipo de cliente</string>
+    <string name="error_msg_comentario">Ingrese el comentario del cliente</string>
+
+    <!-- Errores Prestamos-->
+    <string name="error_msg_fechainicial">Ingrese la fecha inical</string>
+    <string name="error_msg_fechafinal">Ingrese la fecha final</string>
+    <string name="error_msg_condicion">Ingrese la condicion</string>
+    <string name="error_msg_monto">Ingrese el monto</string>
+    <string name="error_msg_montopagado">Ingrese el monto pagado</string>
+    <string name="error_msg_montopendiente">Ingrese el monto pendiente</string>
+    <string name="error_msg_montoparcial">ingrese el monto parcial</string>
+    <string name="error_msg_estado">Ingrese el estado</string>
+    <string name="error_msg_formapago">Ingrese la forma de pago</string>
+    <string name="error_msg_plazo">Ingrese el plazo</string>
+    <string name="error_msg_interes">Ingrese el interes</string>
+    <string name="error_msg_nopagos">Ingrese el no pagos</string>
+
+    <string name="nav_item_home">Inicio</string>
+    <string name="nav_item_users">Usuarios</string>
+    <string name="nav_item_customers">Clientes</string>
+    <string name="nav_item_groups">Grupos</string>
+    <string name="nav_item_payments">Pagos</string>
+    <string name="nav_item_lendigs">Prestamos</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_customers</item>
+        <item>@string/nav_item_lendigs</item>
+        <item>@string/nav_item_groups</item>
+        <!--<item>@string/nav_item_users</item>
+        <item>@string/nav_item_payments</item>
+        <item>@string/nav_item_lendigs</item>-->
+    </string-array>
+
+    <string name="title_lendings">Prestamos</string>
+    <string name="title_payments">Pagos</string>
+    <string name="title_groups">Grupos</string>
+    <string name="title_users">Usuarios</string>
+    <string name="title_customers">Clientes</string>
+    <string name="title_home">Inicio</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_grupo">GrupoActivity</string>
+</resources>
