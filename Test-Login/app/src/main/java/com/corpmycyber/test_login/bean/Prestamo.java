@@ -62,7 +62,7 @@ public class Prestamo implements Serializable {
         return fechaInicio;
     }
 
-    public void setFechaInicio(String fechaInicio) {
+    public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
@@ -70,7 +70,7 @@ public class Prestamo implements Serializable {
         return fechaFin;
     }
 
-    public void setFechaFin(String fechaFin) {
+    public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -86,7 +86,7 @@ public class Prestamo implements Serializable {
         return monto;
     }
 
-    public void setMonto(String monto) {
+    public void setMonto(Double monto) {
         this.monto = monto;
     }
 
@@ -175,4 +175,6 @@ public class Prestamo implements Serializable {
         this.interes = interes;
         this.noPagos = noPagos;
     }
+
+
 }

@@ -7,9 +7,9 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.corpmycyber.test_login.activity.ClienteFragment">
-
-
+    tools:context="com.corpmycyber.test_login.activity.ClienteFragment"
+    app:actionViewClass="android.support.v7.widget.SearchView"
+    app:showAsAction="always">
 
 
     <android.support.design.widget.CoordinatorLayout
@@ -22,13 +22,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!--<android.support.design.widget.TextInputEditText
-                android:id="@+id/txtBuscarCliente"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="Buscar clientes por nombre ..."
-                android:layout_marginBottom="5dp"
-                android:inputType="textVisiblePassword"/>-->
+            <item
+                android:id="@+id/action_search"
+                android:icon="@android:drawable/ic_menu_search"
+                android:title="@string/action_search" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputEditText;
+/*import android.support.design.widget.TextInputEditText; */
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,7 +41,7 @@ public class ClienteFragment extends Fragment {
     private RecyclerView recyclerView;
     private ClienteAdapter mAdapter;
     private SessionManager sesion;
-    private TextInputEditText txtBuscarCliente;
+  //  private TextInputEditText txtBuscarCliente;
     private ArrayAdapter searchAdapter;
     public static Database mDb;
     //endregion

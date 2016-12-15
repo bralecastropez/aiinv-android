@@ -264,7 +264,7 @@ public class PrestamoActivity extends AppCompatActivity implements AdapterView.O
             prestamo.setFechaInicio(txtFechaInicial.getText().toString());
             prestamo.setFechaFin(txtFechaFinal.getText().toString());
             prestamo.setCondicion(txtCondicion.getText().toString());
-            prestamo.setMonto(String.valueOf(Double.valueOf(txtMonto.getText().toString())));
+            prestamo.setMonto(Double.valueOf(txtMonto.getText().toString()));
             prestamo.setMontoPagado(Double.valueOf(txtMontoPagado.getText().toString()));
             prestamo.setMontoPendiente(Double.valueOf(txtMontoPendiente.getText().toString()));
             prestamo.setMontoParcial(Double.valueOf(txtMontoParcial.getText().toString()));
