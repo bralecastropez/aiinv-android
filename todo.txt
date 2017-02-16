@@ -1,0 +1,22 @@
+# AIINV
+- Login
+- Dashboard Admin
+- Terminar Header
+- Terminar Footer
+- Validaciones (Il.js)
+
+# Usuarios
+- Agregar Usuario
+- Eliminar Usuario
+- Modificar Usuario
+- Ver Usuario
+
+# Clientes
++ Listar Clientes
+- Agregar Cliente
+- Eliminar Cliente
+- Modificar Cliente
+- Ver Cliente
+- Agregar Telefono Cliente
+- Eliminar Telefono Cliente
+
