@@ -1,6 +1,6 @@
 <?php
     require_once("config/db/session.php"); 
-    $page_title = "AIINV - Editar Cliente";
+    $page_title = "Editar Cliente";
     $tab_content = '<div class="mdl-layout__tab-bar mdl-js-ripple-effect">
                         <a href="#scroll-tab-1" class="mdl-layout__tab is-active">Datos Personales</a>
                         <a href="#scroll-tab-2" class="mdl-layout__tab">Datos Adicionales</a>
@@ -17,8 +17,9 @@
     if (isset($_GET['IdCliente']) ) { 
         $IdCliente = (int) $_GET['IdCliente']; 
         if (isset($_POST['submitted'])) { 
+            $FechaModificacion = date("Y-m-d H:i:s");
             foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); } 
-            $sql = "UPDATE `cliente` SET  `IdGrupo` =  '{$_POST['IdGrupo']}' ,  `CodigoCliente` =  '{$_POST['CodigoCliente']}' ,  `Nombre` =  '{$_POST['Nombre']}' ,  `Apellido` =  '{$_POST['Apellido']}' ,  `Sexo` =  '{$_POST['Sexo']}' ,  `FechaNacimiento` =  '{$_POST['FechaNacimiento']}' ,  `DPI` =  '{$_POST['DPI']}' ,  `NIT` =  '{$_POST['NIT']}' ,  `LimiteCredito` =  '{$_POST['LimiteCredito']}' ,  `EstadoCivil` =  '{$_POST['EstadoCivil']}' ,  `FechaRegistro` =  '{$_POST['FechaRegistro']}' ,  `FechaModificacion` =  '{$_POST['FechaModificacion']}'   WHERE `IdCliente` = '$IdCliente' "; 
+            $sql = "UPDATE `cliente` SET  `IdGrupo` =  '{$_POST['IdGrupo']}' ,  `CodigoCliente` =  '{$_POST['CodigoCliente']}' ,  `Nombre` =  '{$_POST['Nombre']}' ,  `Apellido` =  '{$_POST['Apellido']}' ,  `Sexo` =  '{$_POST['Sexo']}' ,  `FechaNacimiento` =  '{$_POST['FechaNacimiento']}' ,  `DPI` =  '{$_POST['DPI']}' ,  `NIT` =  '{$_POST['NIT']}' ,  `LimiteCredito` =  '{$_POST['LimiteCredito']}' ,  `EstadoCivil` =  '{$_POST['EstadoCivil']}' ,  `FechaModificacion` =  '$FechaModificacion'   WHERE `IdCliente` = '$IdCliente' "; 
             mysql_query($sql) or die(mysql_error()); 
             echo (mysql_affected_rows()) ? "Edited row.<br />" : "Nothing changed. <br />"; 
             echo "<a href='listarClientes.php'>Back To Listing</a>"; 
@@ -26,23 +27,31 @@
         $row = mysql_fetch_array ( mysql_query("SELECT * FROM `cliente` WHERE `IdCliente` = '$IdCliente' ")); 
 ?>
 
-
-
     <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
         <div class="page-content">
-            <div class="container-fluid">
-                <div class="row">
+            <br/>
+            <br/>
+            <div class="Container100">
+                <div class="ContainerIndent TextAlCenter">
                     <h5>
                         Datos del Cliente
-                        <br/>
-                        <div class="mdl-card__actions mdl-card--border"></div>
+                        <button type="button" class="btn btn-primary">
+                            &Uacute;ltima Modificaci&oacute;n:
+                            <span class="badge">
+                                <?= stripslashes($row['FechaModificacion']) ?>
+                            </span>
+                        </button>
                     </h5>
-                    <form action='' method='POST'>
-                        <div class="col-md-6">
-                            <p>
-                                <b>Grupo:</b><br />
-                                <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                    <select id="IdGrupo" name="IdGrupo" class="mdl-selectfield__select" required>
+                </div>
+                <div class="mdl-card__actions mdl-card--border"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <form action='' method='POST'>
+                            <div class="col-md-6">
+                                <p>
+                                    <b>Grupo:</b><br />
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                        <select id="IdGrupo" name="IdGrupo" class="mdl-selectfield__select" required>
                                     <?php
                                         $query_grupo = mysql_query("SELECT * FROM `grupo`") or trigger_error(mysql_error()); 
                                         while($grupo = mysql_fetch_array($query_grupo)){ 
@@ -54,38 +63,38 @@
                                         </option>
                                     <?php } ?>
                                 </select>
-                                    <label class="mdl-textfield__label" for="IdGrupo">Grupo</label>
-                                    <span class="mdl-selectfield__error">Seleccione un Grupo</span>
-                                </div>
-                            </p>
-                            <p>
-                                <b>Nombre: </b><br/>
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" maxlength="50" required pattern="^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$" name="Nombre" id="Nombre" value="<?= stripslashes($row['Nombre']) ?>" />
-                                    <label class="mdl-textfield__label" for="Nombre">Nombre</label>
-                                    <span class="mdl-textfield__error">Debe ingresar un nombre v&aacute;lido</span>
-                                </div>
-                            </p>
-                            <p>
-                                <b>C&oacute;digo del Cliente: </b><br/>
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" name="CodigoCliente" id="CodigoCliente" placeholder="C&oacute;digo del Cliente" value="<?= stripslashes($row['CodigoCliente']) ?>" />
-                                    <label class="mdl-textfield__label" for="CodigoCliente">C&oacute;digo del Cliente</label>
-                                    <span class="mdl-textfield__error">Debe ingresar un c&oacute;digo v&aacute;lido</span>
-                                </div>
-                            </p>
-                            <p>
-                                <b>DPI: </b><br/>
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" name="DPI" id="DPI" value="<?= stripslashes($row['DPI']) ?>" />
-                                    <label class="mdl-textfield__label" for="DPI">DPI</label>
-                                    <span class="mdl-textfield__error">Debe ingresar un n&uacute;mero valido</span>
-                                </div>
-                            </p>
-                            <p>
-                                <b>Estado Civil:</b>
-                                <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                    <select id="EstadoCivil" name="EstadoCivil" class="mdl-selectfield__select" required>
+                                        <label class="mdl-textfield__label" for="IdGrupo">Grupo</label>
+                                        <span class="mdl-selectfield__error">Seleccione un Grupo</span>
+                                    </div>
+                                </p>
+                                <p>
+                                    <b>Nombre: </b><br/>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="text" maxlength="50" required pattern="^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$" name="Nombre" id="Nombre" value="<?= stripslashes($row['Nombre']) ?>" />
+                                        <label class="mdl-textfield__label" for="Nombre">Nombre</label>
+                                        <span class="mdl-textfield__error">Debe ingresar un nombre v&aacute;lido</span>
+                                    </div>
+                                </p>
+                                <p>
+                                    <b>C&oacute;digo del Cliente: </b><br/>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="text" name="CodigoCliente" id="CodigoCliente" placeholder="C&oacute;digo del Cliente" value="<?= stripslashes($row['CodigoCliente']) ?>" />
+                                        <label class="mdl-textfield__label" for="CodigoCliente">C&oacute;digo del Cliente</label>
+                                        <span class="mdl-textfield__error">Debe ingresar un c&oacute;digo v&aacute;lido</span>
+                                    </div>
+                                </p>
+                                <p>
+                                    <b>DPI: </b><br/>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="text" name="DPI" id="DPI" value="<?= stripslashes($row['DPI']) ?>" />
+                                        <label class="mdl-textfield__label" for="DPI">DPI</label>
+                                        <span class="mdl-textfield__error">Debe ingresar un n&uacute;mero valido</span>
+                                    </div>
+                                </p>
+                                <p>
+                                    <b>Estado Civil:</b>
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                        <select id="EstadoCivil" name="EstadoCivil" class="mdl-selectfield__select" required>
                                         <?php 
                                             foreach($EstadosCiviles AS $key => $estado) { 
                                                 if ($estado == $row['EstadoCivil'])  {
@@ -96,16 +105,16 @@
                                             } 
                                         ?>
                                     </select>
-                                    <!--<label class="mdl-textfield__label" for="EstadoCivil">Estado Civil</label>-->
-                                    <span class="mdl-selectfield__error">Seleccione un estado</span>
-                                </div>
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p>
-                                <b>Sexo:</b>
-                                <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                    <select id="Sexo" name="Sexo" class="mdl-selectfield__select" required>
+                                        <!--<label class="mdl-textfield__label" for="EstadoCivil">Estado Civil</label>-->
+                                        <span class="mdl-selectfield__error">Seleccione un estado</span>
+                                    </div>
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    <b>Sexo:</b>
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                        <select id="Sexo" name="Sexo" class="mdl-selectfield__select" required>
                                         <?php 
                                             foreach($Sexos AS $key => $sexo) { 
                                                 if ($estado == $row['Sexo'])  {
@@ -116,56 +125,57 @@
                                             } 
                                         ?>
                                     </select>
-                                    <!--<label class="mdl-textfield__label" for="Sexo">Sexo</label>-->
-                                    <span class="mdl-selectfield__error">Seleccione un sexo</span>
-                                </div>
-                            </p>
-                            <p>
-                                <b>Apellido: </b><br/>
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" required type="text" maxlength="50" pattern="^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$" name="Apellido" id="Apellido" value="<?= stripslashes($row['Apellido']) ?>" />
-                                    <label class="mdl-textfield__label" for="Apellido">Apellido</label>
-                                    <span class="mdl-textfield__error">Debe ingresar un apellido v&aacute;lido</span>
-                                </div>
-                            </p>
-                            <p>
-                                <b>Fecha de Nacimiento:</b><br />
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input type="text" id="FechaNacimiento" required name="FechaNacimiento" class="mdl-textfield__input" value="<?= stripslashes($row['FechaNacimiento']) ?>">
-                                    <label class="mdl-textfield__label" for="FechaNacimiento">Fecha de Nacimiento</label>
-                                    <span class="mdl-textfield__error">Debe seleccionar una fecha v&aacute;lida</span>
-                                </div>
-                            </p>
-                            <p>
-                                <b>NIT: </b><br/>
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" name="NIT" id="NIT" value="<?= stripslashes($row['NIT']) ?>" />
-                                    <label class="mdl-textfield__label" for="NIT">NIT</label>
-                                    <span class="mdl-textfield__error">Debe ingresar un n&uacute;mero valido</span>
-                                </div>
-                            </p>
-                            <p>
-                                <b>L&iacute;mite de Cr&eacute;dito:</b>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Q</span>
-                                    <div class="mdl-textfield mdl-js-textfield">
-                                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="LimiteCredito" id="LimiteCredito" required value="<?= stripslashes($row['LimiteCredito']) ?>" />
-                                        <span class="mdl-textfield__error">Debe ingresar un n&uacute;mero v&aacute;lido</span>
+                                        <!--<label class="mdl-textfield__label" for="Sexo">Sexo</label>-->
+                                        <span class="mdl-selectfield__error">Seleccione un sexo</span>
                                     </div>
-                                    <span class="input-group-addon">.00</span>
-                                </div>
-                            </p>
-                        </div>
-                        <p>
-                            <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="window.location.href='listarClientes.php'">
+                                </p>
+                                <p>
+                                    <b>Apellido: </b><br/>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" required type="text" maxlength="50" pattern="^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$" name="Apellido" id="Apellido" value="<?= stripslashes($row['Apellido']) ?>" />
+                                        <label class="mdl-textfield__label" for="Apellido">Apellido</label>
+                                        <span class="mdl-textfield__error">Debe ingresar un apellido v&aacute;lido</span>
+                                    </div>
+                                </p>
+                                <p>
+                                    <b>Fecha de Nacimiento:</b><br />
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input type="text" id="FechaNacimiento" required name="FechaNacimiento" class="mdl-textfield__input" value="<?= stripslashes($row['FechaNacimiento']) ?>">
+                                        <label class="mdl-textfield__label" for="FechaNacimiento">Fecha de Nacimiento</label>
+                                        <span class="mdl-textfield__error">Debe seleccionar una fecha v&aacute;lida</span>
+                                    </div>
+                                </p>
+                                <p>
+                                    <b>NIT: </b><br/>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="text" name="NIT" id="NIT" value="<?= stripslashes($row['NIT']) ?>" />
+                                        <label class="mdl-textfield__label" for="NIT">NIT</label>
+                                        <span class="mdl-textfield__error">Debe ingresar un n&uacute;mero valido</span>
+                                    </div>
+                                </p>
+                                <p>
+                                    <b>L&iacute;mite de Cr&eacute;dito:</b>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Q</span>
+                                        <div class="mdl-textfield mdl-js-textfield">
+                                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="LimiteCredito" id="LimiteCredito" required value="<?= stripslashes($row['LimiteCredito']) ?>" />
+                                            <span class="mdl-textfield__error">Debe ingresar un n&uacute;mero v&aacute;lido</span>
+                                        </div>
+                                        <span class="input-group-addon">.00</span>
+                                    </div>
+                                </p>
+                            </div>
+                            <p>
+                                <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="window.location.href='listarClientes.php'">
                                 Cancelar
                             </button>
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type='submit' style="color: white;">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type='submit' style="color: white;">
                                 Editar
                             </button>
-                            <input type='hidden' value='1' name='submitted' />
-                        </p>
-                    </form>
+                                <input type='hidden' value='1' name='submitted' />
+                            </p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -174,9 +184,9 @@
         <div class="page-content">
             <br/>
             <br/>
-            <div class="Container100 Responsive">
+            <div class="Container100">
                 <div class="ContainerIndent TextAlCenter">
-                    <h5>Telefonos</h5>
+                    <h5>Tel&eacute;fonos</h5>
                 </div>
                 <hr/>
             </div>
@@ -243,7 +253,7 @@
                 </button>
             </div>
             <br/>
-            <div class="Container100 Responsive">
+            <div class="Container100">
                 <div class="ContainerIndent TextAlCenter">
                     <h5>Direcciones</h5>
                 </div>
@@ -313,9 +323,9 @@
                 </button>
             </div>
             <br/>
-            <div class="Container100 Responsive">
+            <div class="Container100">
                 <div class="ContainerIndent TextAlCenter">
-                    <h5>Correos Electronicos</h5>
+                    <h5>Correos Electr&oacute;nicos</h5>
                 </div>
                 <hr/>
             </div>
@@ -361,7 +371,94 @@
     </section>
     <section class="mdl-layout__tab-panel" id="scroll-tab-3">
         <div class="page-content">
+            <br/>
+            <br/>
+            <div class="Container100">
+                <div class="ContainerIndent TextAlCenter">
+                    <h5>Garantias del Cliente</h5>
+                </div>
+                <div class="mdl-card__actions mdl-card--border"></div>
+                <div class="container-fluid">
+                    <div class="row">
 
+
+                        <?php
+                            $query_garantia = mysql_query("SELECT * FROM `garantecliente` WHERE `IdCliente` = '$IdCliente'") or trigger_error(mysql_error()); 
+                            while($garantia = mysql_fetch_array($query_garantia)){ 
+                                foreach($garantia AS $key => $value) { $garantia[$key] = stripslashes($value); } 
+                            ?>
+                            <div class="mdl-card mdl-shadow--2dp ContainerIndent">
+                                <div class="mdl-card__title mdl-card--border">
+                                    <h2 class="mdl-card__title-text">
+                                        <?php echo $garantia['IdGaranteCliente'] . " " . $garantia['Tipo']; ?>
+                                    </h2>
+                                </div>
+                                <div class="mdl-card__supporting-text mdl-card--border">
+
+                                    <div class="col-md-12">
+
+                                        <button data-toggle="collapse" data-target="#demo">Ver Detalles</button>
+
+                                        <div id="demo" class="collapse">
+
+                                            <div class="col-md-6">
+                                                C&oacute;digo Cliente:
+                                                <?php echo $garantia['CodigoCliente']; ?><br/> Grupo:
+                                                <?php echo $garantia['IdGrupo']; ?><br/> L&iacute;mite Cr&eacute;dito: Q.
+                                                <?php echo $garantia['LimiteCredito'] ?><br/>
+                                            </div>
+                                            <div class="col-md-6">
+                                                DPI:
+                                                <?php echo $garantia['DPI'] ?><br/> NIT:
+                                                <?php echo $garantia['NIT'] ?><br/> Correo Electr&oacute;nico:
+                                                <?php echo $garantia['NIT'] ?>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="mdl-card__actions mdl-card--border">
+                                    <button class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect">
+                  Ver Pagos
+                </button>
+                                    <button class="mdl-button mdl-js-button mdl-button--accent mdl-js-ripple-effect">
+                  Ver Prestamos
+                </button>
+                                </div>
+                                <div class="mdl-card__menu">
+                                    <button id="demo-menu-lower-right<?php echo $garantia['IdCliente']; ?>" class="mdl-button mdl-js-button mdl-button--icon">
+                  <i class="material-icons">more_vert</i>
+                </button>
+
+                                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right<?php echo $garantia['IdCliente']; ?>">
+                                        <a href="eliminarCliente.php?IdCliente=<?php echo $garantia[ 'IdCliente']; ?>">
+                                            <li class="mdl-menu__item">
+                                                <button class="mdl-button mdl-js-button mdl-button--icon">
+                              <i class="material-icons">info</i>
+                            </button> Ver
+                                            </li>
+                                        </a>
+                                        <a href="modificarCliente.php?IdCliente=<?php echo $garantia[ 'IdCliente']; ?>">
+                                            <li class="mdl-menu__item">
+                                                <button class="mdl-button mdl-js-button mdl-button--icon">
+                              <i class="material-icons">create</i>
+                            </button> Editar
+                                            </li>
+                                        </a>
+                                        <a href="eliminarCliente.php?IdCliente=<?php echo $garantia[ 'IdCliente']; ?>">
+                                            <li class="mdl-menu__item">
+                                                <button class="mdl-button mdl-js-button mdl-button--icon">
+                              <i class="material-icons">delete</i>
+                            </button> Eliminar
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </div>
+                            </div>
+                            <?php } ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">

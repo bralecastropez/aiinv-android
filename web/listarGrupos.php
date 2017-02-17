@@ -1,6 +1,6 @@
 <?php
     require_once("config/db/session.php");
-    $page_title = "AIINV - Grupos";
+    $page_title = "Grupos";
     require_once("config/page/header.php");
 ?>
 

@@ -1,6 +1,6 @@
 <?php
     require_once("config/db/session.php");
-    $page_title = "AIINV - Clientes";
+    $page_title = "Clientes";
     require_once("config/page/header.php");
 ?>
     <style>

@@ -1,6 +1,6 @@
 <?php
     require_once("config/db/session.php"); 
-    $page_title = "AIINV - Agregar Cliente";
+    $page_title = "Agregar Cliente";
     require_once("config/page/header.php");
     require_once("config/page/maintance_imports.php");
 
@@ -29,6 +29,15 @@
 ?>
 
     <form action='' method='POST' style="margin: 20px;" data-toggle="validator" role="form">
+        <div class="Container100">
+            <div class="ContainerIndent TextAlCenter">
+                <h5>
+                    <form><input type="button" value="Atras" onclick="history.go(-1);return true;" /></form>
+                    Datos del Cliente
+                </h5>
+            </div>
+            <div class="mdl-card__actions mdl-card--border"></div>
+        </div>
         <h5>
             Datos del Cliente
             <br/>
