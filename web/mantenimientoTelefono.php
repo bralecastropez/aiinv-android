@@ -7,7 +7,7 @@
 
     switch ($_GET['Accion']) {
         case 'Agregar':
-            $page_title = "AIINV - Agregar Teléfono";
+            $page_title = "Agregar Teléfono";
             if(isset($_POST['Added'])) {
                 foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); } 
                 $IdCliente = $_GET['IdCliente'];
@@ -19,7 +19,7 @@
             break;
             
         case 'Eliminar':
-            $page_title = "AIINV - Eliminar Teléfono";
+            $page_title = "Eliminar Teléfono";
             if(isset($_POST['Deleted'])) {
                 foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); } 
                 $sql = "DELETE FROM `telefonocliente` WHERE `IdTelefonoCliente` = " . $telefono_cliente['IdTelefonoCliente']; 
@@ -30,7 +30,7 @@
             break;
         
         case 'Modificar':
-            $page_title = "AIINV - Modificar Teléfono";
+            $page_title = "Modificar Teléfono";
             if(isset($_POST['Modified'])) {
                 foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); } 
                 $sql = "UPDATE `telefonocliente` SET `Telefono` =  '{$_POST['Telefono']}' ,  `Descripcion` =  '{$_POST['Descripcion']}'   WHERE `IdTelefonoCliente` = " . $telefono_cliente['IdTelefonoCliente']; 
@@ -43,9 +43,8 @@
         default:
             break;
     }
-
+    $page_maintance = true;
     require_once("config/page/header.php"); 
-    require_once("config/page/maintance_imports.php"); 
 ?>
 
     <?php 
@@ -142,5 +141,4 @@
                 }
         
                 require_once("config/page/header.php");
-                require_once("config/page/maintance_imports.php"); 
         ?>

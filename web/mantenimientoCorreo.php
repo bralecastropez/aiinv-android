@@ -1,5 +1,5 @@
 <?php
-    require_once("config/db/session.php"); 
+    require_once("config/db/session.php");
     $url_referencia = $_GET['Referencia'];
     if(isset($_GET['IdCorreoCliente'])) {
         $correo_cliente = mysql_fetch_array(mysql_query("SELECT * FROM `correocliente` WHERE `IdCorreoCliente` = '" .  $_GET["IdCorreoCliente"] . "'"));
@@ -43,9 +43,8 @@
         default:
             break;
     }
-
+    $page_maintance = true;
     require_once("config/page/header.php"); 
-    require_once("config/page/maintance_imports.php"); 
 ?>
 
     <?php 
@@ -70,7 +69,7 @@
         <div class="modal-footer">
             <input type="hidden" name="Added" id="Added" value="1" />
             <input type="hidden" name="IdCliente" id="IdCliente" value="<?php echo $IdCliente; ?>" />
-            <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="window.location.href='<?php echo $url_referencia; ?>'">
+            <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="regresar()">
                 Cancelar
             </button>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type='submit' style="color: white;"> Ingresar
@@ -99,7 +98,7 @@
             <div class="modal-footer">
                 <p><strong>¿Desea eliminar este registro?</strong></p>
                 <input type="hidden" name="Deleted" id="Deleted" value="1" />
-                <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="window.location.href='<?php echo $url_referencia; ?>'">
+                <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="regresar()">
                 Cancelar
             </button>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type='submit' style="color: white;">
@@ -129,7 +128,7 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" name="Modified" id="Modified" value="1" />
-                <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="window.location.href='<?php echo $url_referencia; ?>'">
+                <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="regresar()">
                 Cancelar
             </button>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type='submit' style="color: white;">
@@ -142,5 +141,11 @@
                 }
         
                 require_once("config/page/header.php");
-                require_once("config/page/maintance_imports.php"); 
         ?>
+
+            <script type="text/javascript">
+                var regresar = function() {
+                    window.location.href = '<?php $url_referencia; ?>';
+                }
+
+            </script>

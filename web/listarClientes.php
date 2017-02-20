@@ -32,63 +32,65 @@
     while($row = mysql_fetch_array($result)){ 
         foreach($row AS $key => $value) { $row[$key] = stripslashes($value); } 
     ?>
-        <div class="mdl-card mdl-shadow--2dp">
-            <div class="mdl-card__title mdl-card--border">
-                <h2 class="mdl-card__title-text">
-                    <?php echo $row['Nombre'] . " " . $row['Apellido']; ?>
-                </h2>
-            </div>
-            <div class="mdl-card__supporting-text mdl-card--border">
-                <div class="col-md-6">
-                    C&oacute;digo Cliente:
-                    <?php echo $row['CodigoCliente']; ?><br/> Grupo:
-                    <?php echo $row['IdGrupo']; ?><br/> L&iacute;mite Cr&eacute;dito: Q.
-                    <?php echo $row['LimiteCredito'] ?><br/>
+        <div class="ContainerIndent" style="margin-right: 30px;">
+            <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--border">
+                    <h2 class="mdl-card__title-text">
+                        <?php echo $row['Nombre'] . " " . $row['Apellido']; ?>
+                    </h2>
                 </div>
-                <div class="col-md-6">
-                    DPI:
-                    <?php echo $row['DPI'] ?><br/> NIT:
-                    <?php echo $row['NIT'] ?><br/> Correo Electr&oacute;nico:
-                    <?php echo $row['NIT'] ?>
-                </div>
+                <div class="mdl-card__supporting-text mdl-card--border">
+                    <div class="col-md-6">
+                        C&oacute;digo Cliente:
+                        <?php echo $row['CodigoCliente']; ?><br/> Grupo:
+                        <?php echo $row['IdGrupo']; ?><br/> L&iacute;mite Cr&eacute;dito: Q.
+                        <?php echo $row['LimiteCredito'] ?><br/>
+                    </div>
+                    <div class="col-md-6">
+                        DPI:
+                        <?php echo $row['DPI'] ?><br/> NIT:
+                        <?php echo $row['NIT'] ?><br/> Correo Electr&oacute;nico:
+                        <?php echo $row['NIT'] ?>
+                    </div>
 
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-                <button class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect">
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <button class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect">
                   Ver Pagos
                 </button>
-                <button class="mdl-button mdl-js-button mdl-button--accent mdl-js-ripple-effect">
+                    <button class="mdl-button mdl-js-button mdl-button--accent mdl-js-ripple-effect">
                   Ver Prestamos
                 </button>
-            </div>
-            <div class="mdl-card__menu">
-                <button id="demo-menu-lower-right<?php echo $row['IdCliente']; ?>" class="mdl-button mdl-js-button mdl-button--icon">
+                </div>
+                <div class="mdl-card__menu">
+                    <button id="demo-menu-lower-right<?php echo $row['IdCliente']; ?>" class="mdl-button mdl-js-button mdl-button--icon">
                   <i class="material-icons">more_vert</i>
                 </button>
 
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right<?php echo $row['IdCliente']; ?>">
-                    <a href="eliminarCliente.php?IdCliente=<?php echo $row[ 'IdCliente']; ?>">
-                        <li class="mdl-menu__item">
-                            <button class="mdl-button mdl-js-button mdl-button--icon">
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right<?php echo $row['IdCliente']; ?>">
+                        <a href="eliminarCliente.php?IdCliente=<?php echo $row[ 'IdCliente']; ?>">
+                            <li class="mdl-menu__item">
+                                <button class="mdl-button mdl-js-button mdl-button--icon">
                               <i class="material-icons">info</i>
                             </button> Ver
-                        </li>
-                    </a>
-                    <a href="modificarCliente.php?IdCliente=<?php echo $row[ 'IdCliente']; ?>">
-                        <li class="mdl-menu__item">
-                            <button class="mdl-button mdl-js-button mdl-button--icon">
+                            </li>
+                        </a>
+                        <a href="modificarCliente.php?IdCliente=<?php echo $row[ 'IdCliente']; ?>">
+                            <li class="mdl-menu__item">
+                                <button class="mdl-button mdl-js-button mdl-button--icon">
                               <i class="material-icons">create</i>
                             </button> Editar
-                        </li>
-                    </a>
-                    <a href="eliminarCliente.php?IdCliente=<?php echo $row[ 'IdCliente']; ?>">
-                        <li class="mdl-menu__item">
-                            <button class="mdl-button mdl-js-button mdl-button--icon">
+                            </li>
+                        </a>
+                        <a href="eliminarCliente.php?IdCliente=<?php echo $row[ 'IdCliente']; ?>">
+                            <li class="mdl-menu__item">
+                                <button class="mdl-button mdl-js-button mdl-button--icon">
                               <i class="material-icons">delete</i>
                             </button> Eliminar
-                        </li>
-                    </a>
-                </ul>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
             </div>
         </div>
         <?php } ?>

@@ -1,6 +1,7 @@
 <?php
     require_once("config/db/session.php"); 
     $page_title = "Editar Cliente";
+    $page_maintance = true;
     $tab_content = '<div class="mdl-layout__tab-bar mdl-js-ripple-effect">
                         <a href="#scroll-tab-1" class="mdl-layout__tab is-active">Datos Personales</a>
                         <a href="#scroll-tab-2" class="mdl-layout__tab">Datos Adicionales</a>
@@ -8,11 +9,10 @@
                         <a href="#scroll-tab-4" class="mdl-layout__tab">Referencias</a>
                         <a href="#scroll-tab-5" class="mdl-layout__tab" disabled>Prestamos</a>
                     </div>';
+    require_once("config/page/header.php");
+
     $EstadosCiviles = array("Soltero", "Casado", "Viudo", "Divorciado");
     $Sexos = array("Masculino", "Femenino", "Otro");
-
-    require_once("config/page/header.php");
-    require_once("config/page/maintance_imports.php");
 
     if (isset($_GET['IdCliente']) ) { 
         $IdCliente = (int) $_GET['IdCliente']; 
@@ -21,8 +21,7 @@
             foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); } 
             $sql = "UPDATE `cliente` SET  `IdGrupo` =  '{$_POST['IdGrupo']}' ,  `CodigoCliente` =  '{$_POST['CodigoCliente']}' ,  `Nombre` =  '{$_POST['Nombre']}' ,  `Apellido` =  '{$_POST['Apellido']}' ,  `Sexo` =  '{$_POST['Sexo']}' ,  `FechaNacimiento` =  '{$_POST['FechaNacimiento']}' ,  `DPI` =  '{$_POST['DPI']}' ,  `NIT` =  '{$_POST['NIT']}' ,  `LimiteCredito` =  '{$_POST['LimiteCredito']}' ,  `EstadoCivil` =  '{$_POST['EstadoCivil']}' ,  `FechaModificacion` =  '$FechaModificacion'   WHERE `IdCliente` = '$IdCliente' "; 
             mysql_query($sql) or die(mysql_error()); 
-            echo (mysql_affected_rows()) ? "Edited row.<br />" : "Nothing changed. <br />"; 
-            echo "<a href='listarClientes.php'>Back To Listing</a>"; 
+            redirect("modificarCliente.php?IdCliente=" . $IdCliente);
         } 
         $row = mysql_fetch_array ( mysql_query("SELECT * FROM `cliente` WHERE `IdCliente` = '$IdCliente' ")); 
 ?>
@@ -48,8 +47,8 @@
                     <div class="row">
                         <form action='' method='POST'>
                             <div class="col-md-6">
-                                <p>
-                                    <b>Grupo:</b><br />
+                                <div>
+                                    <p><b>Grupo:</b></p>
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
                                         <select id="IdGrupo" name="IdGrupo" class="mdl-selectfield__select" required>
                                     <?php
@@ -66,33 +65,33 @@
                                         <label class="mdl-textfield__label" for="IdGrupo">Grupo</label>
                                         <span class="mdl-selectfield__error">Seleccione un Grupo</span>
                                     </div>
-                                </p>
-                                <p>
-                                    <b>Nombre: </b><br/>
+                                </div><br/>
+                                <div>
+                                    <p><b>Nombre: </b></p>
                                     <div class="mdl-textfield mdl-js-textfield">
                                         <input class="mdl-textfield__input" type="text" maxlength="50" required pattern="^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$" name="Nombre" id="Nombre" value="<?= stripslashes($row['Nombre']) ?>" />
                                         <label class="mdl-textfield__label" for="Nombre">Nombre</label>
                                         <span class="mdl-textfield__error">Debe ingresar un nombre v&aacute;lido</span>
                                     </div>
-                                </p>
-                                <p>
-                                    <b>C&oacute;digo del Cliente: </b><br/>
+                                </div><br/>
+                                <div>
+                                    <p><b>C&oacute;digo del Cliente: </b></p>
                                     <div class="mdl-textfield mdl-js-textfield">
                                         <input class="mdl-textfield__input" type="text" name="CodigoCliente" id="CodigoCliente" placeholder="C&oacute;digo del Cliente" value="<?= stripslashes($row['CodigoCliente']) ?>" />
                                         <label class="mdl-textfield__label" for="CodigoCliente">C&oacute;digo del Cliente</label>
                                         <span class="mdl-textfield__error">Debe ingresar un c&oacute;digo v&aacute;lido</span>
                                     </div>
-                                </p>
-                                <p>
-                                    <b>DPI: </b><br/>
+                                </div><br/>
+                                <div>
+                                    <p><b>DPI: </b></p>
                                     <div class="mdl-textfield mdl-js-textfield">
                                         <input class="mdl-textfield__input" type="text" name="DPI" id="DPI" value="<?= stripslashes($row['DPI']) ?>" />
                                         <label class="mdl-textfield__label" for="DPI">DPI</label>
                                         <span class="mdl-textfield__error">Debe ingresar un n&uacute;mero valido</span>
                                     </div>
-                                </p>
-                                <p>
-                                    <b>Estado Civil:</b>
+                                </div><br/>
+                                <div>
+                                    <p><b>Estado Civil:</b></p>
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
                                         <select id="EstadoCivil" name="EstadoCivil" class="mdl-selectfield__select" required>
                                         <?php 
@@ -108,11 +107,11 @@
                                         <!--<label class="mdl-textfield__label" for="EstadoCivil">Estado Civil</label>-->
                                         <span class="mdl-selectfield__error">Seleccione un estado</span>
                                     </div>
-                                </p>
+                                </div><br/>
                             </div>
                             <div class="col-md-6">
-                                <p>
-                                    <b>Sexo:</b>
+                                <div>
+                                    <p><b>Sexo:</b></p>
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
                                         <select id="Sexo" name="Sexo" class="mdl-selectfield__select" required>
                                         <?php 
@@ -128,33 +127,33 @@
                                         <!--<label class="mdl-textfield__label" for="Sexo">Sexo</label>-->
                                         <span class="mdl-selectfield__error">Seleccione un sexo</span>
                                     </div>
-                                </p>
-                                <p>
-                                    <b>Apellido: </b><br/>
+                                </div><br/>
+                                <div>
+                                    <p><b>Apellido: </b></p>
                                     <div class="mdl-textfield mdl-js-textfield">
                                         <input class="mdl-textfield__input" required type="text" maxlength="50" pattern="^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$" name="Apellido" id="Apellido" value="<?= stripslashes($row['Apellido']) ?>" />
                                         <label class="mdl-textfield__label" for="Apellido">Apellido</label>
                                         <span class="mdl-textfield__error">Debe ingresar un apellido v&aacute;lido</span>
                                     </div>
-                                </p>
-                                <p>
-                                    <b>Fecha de Nacimiento:</b><br />
+                                </div><br/>
+                                <div>
+                                    <p><b>Fecha de Nacimiento:</b></p>
                                     <div class="mdl-textfield mdl-js-textfield">
                                         <input type="text" id="FechaNacimiento" required name="FechaNacimiento" class="mdl-textfield__input" value="<?= stripslashes($row['FechaNacimiento']) ?>">
                                         <label class="mdl-textfield__label" for="FechaNacimiento">Fecha de Nacimiento</label>
                                         <span class="mdl-textfield__error">Debe seleccionar una fecha v&aacute;lida</span>
                                     </div>
-                                </p>
-                                <p>
-                                    <b>NIT: </b><br/>
+                                </div><br/>
+                                <div>
+                                    <p><b>NIT: </b></p>
                                     <div class="mdl-textfield mdl-js-textfield">
                                         <input class="mdl-textfield__input" type="text" name="NIT" id="NIT" value="<?= stripslashes($row['NIT']) ?>" />
                                         <label class="mdl-textfield__label" for="NIT">NIT</label>
                                         <span class="mdl-textfield__error">Debe ingresar un n&uacute;mero valido</span>
                                     </div>
-                                </p>
-                                <p>
-                                    <b>L&iacute;mite de Cr&eacute;dito:</b>
+                                </div><br/>
+                                <div>
+                                    <p><b>L&iacute;mite de Cr&eacute;dito:</b></p>
                                     <div class="input-group">
                                         <span class="input-group-addon">Q</span>
                                         <div class="mdl-textfield mdl-js-textfield">
@@ -163,9 +162,9 @@
                                         </div>
                                         <span class="input-group-addon">.00</span>
                                     </div>
-                                </p>
+                                </div><br/>
                             </div>
-                            <p>
+                            <div>
                                 <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="window.location.href='listarClientes.php'">
                                 Cancelar
                             </button>
@@ -173,7 +172,7 @@
                                 Editar
                             </button>
                                 <input type='hidden' value='1' name='submitted' />
-                            </p>
+                            </div><br/>
                         </form>
                     </div>
                 </div>
@@ -214,11 +213,11 @@
                                 </td>
                                 <td>
                                     <div class="ShowMin Fright">
-                                        <button id="demo-menu-lower-right<?php echo $telefono['IdTelefonoCliente']; ?>" class="mdl-button mdl-js-button mdl-button--icon">
+                                        <button id="demo-menu-lower-right-telefono_cliente<?php echo $telefono['IdTelefonoCliente']; ?>" class="mdl-button mdl-js-button mdl-button--icon">
                                           <i class="material-icons">more_vert</i>
                                         </button>
 
-                                        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right<?php echo $telefono['IdTelefonoCliente']; ?>">
+                                        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right-telefono_cliente<?php echo $telefono['IdTelefonoCliente']; ?>">
                                             <a onclick="EliminarTelefono(<?php echo $telefono['IdTelefonoCliente']; ?>)">
                                                 <li class="mdl-menu__item">
                                                     <button class="mdl-button mdl-js-button mdl-button--icon" onclick="ModificarTelefono(<?php echo $telefono['IdTelefonoCliente']; ?>)">
@@ -248,9 +247,12 @@
                             <?php } ?>
                     </tbody>
                 </table>
-                <button class="pull-right mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="AgregarTelefono()">
+                <button id="add-telefono" class="pull-right mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="AgregarTelefono()" style="color: white; ">
                   <i class="material-icons">add</i>
                 </button>
+                <div class="mdl-tooltip" data-mdl-for="add-telefono">
+                    Agregar Tel&eacute;fono
+                </div>
             </div>
             <br/>
             <div class="Container100">
@@ -283,11 +285,11 @@
                                 </td>
                                 <td>
                                     <div class="Fright ShowMin">
-                                        <button id="demo-menu-lower-right<?php echo $direccion['IdDireccionCliente']; ?>" class="mdl-button mdl-js-button mdl-button--icon">
+                                        <button id="demo-menu-lower-right-direccion_cliente<?php echo $direccion['IdDireccionCliente']; ?>" class="mdl-button mdl-js-button mdl-button--icon">
                                           <i class="material-icons">more_vert</i>
                                         </button>
 
-                                        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right<?php echo $direccion['IdDireccionCliente']; ?>">
+                                        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right-direccion_cliente<?php echo $direccion['IdDireccionCliente']; ?>">
                                             <a onclick="ModificarDireccion(<?php echo $direccion['IdDireccionCliente']; ?>)">
                                                 <li class="mdl-menu__item">
                                                     <button class="mdl-button mdl-js-button mdl-button--icon" onclick="ModificarDireccion(<?php echo $direccion['IdDireccionCliente']; ?>)">
@@ -318,9 +320,12 @@
                             <?php } ?>
                     </tbody>
                 </table>
-                <button class="pull-right mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="AgregarDireccion()">
+                <button id="add-direccion" style="color: white;" class="pull-right mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="AgregarDireccion()">
                   <i class="material-icons">add</i>
                 </button>
+                <div class="mdl-tooltip" data-mdl-for="add-direccion">
+                    Agregar Direcci&oacute;n
+                </div>
             </div>
             <br/>
             <div class="Container100">
@@ -352,25 +357,59 @@
                                     <?php echo $correo['Descripcion']; ?>
                                 </td>
                                 <td>
-                                    <button class="mdl-button mdl-js-button mdl-button--primary" onclick="ModificarCorreo(<?php echo $correo['IdCorreoCliente']; ?>)">
-                                    <i class="material-icons">create</i>
-                                </button>
-                                    <button class="mdl-button mdl-js-button mdl-button--accent" onclick="EliminarCorreo(<?php echo $correo['IdCorreoCliente']; ?>)">
-                                    <i class="material-icons">delete</i>
-                                </button>
-                                </td>
+
+                                    <div class="Fright ShowMin">
+                                        <button id="demo-menu-lower-right-correo_cliente<?php echo $correo['IdCorreoCliente']; ?>" class="mdl-button mdl-js-button mdl-button--icon">
+                                          <i class="material-icons">more_vert</i>
+                                        </button>
+
+                                        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right-correo_cliente<?php echo $correo['IdCorreoCliente']; ?>">
+                                            <a onclick="ModificarCorreo(<?php echo $correo['IdCorreoCliente']; ?>)">
+                                                <li class="mdl-menu__item">
+                                                    <button class="mdl-button mdl-js-button mdl-button--icon" onclick="ModificarCorreo(<?php echo $correo['IdCorreoCliente']; ?>)">
+                                                <i class="material-icons">create</i>
+                                            </button>Editar
+                                                </li>
+                                            </a>
+                                            <a onclick="EliminarCorreo(<?php echo $correo['IdCorreoCliente']; ?>)">
+                                                <li class="mdl-menu__item">
+                                                    <button class="mdl-button mdl-js-button mdl-button--icon" onclick="EliminarCorreo(<?php echo $correo['IdCorreoCliente']; ?>)">
+                                                <i class="material-icons">delete</i>
+                                            </button>Eliminar
+                                                </li>
+                                            </a>
+                                        </ul>
+                                    </div>
+
+                                    <div class="Fright ShowMax">
+                                        <button class="mdl-button mdl-js-button mdl-button--primary" onclick="ModificarCorreo(<?php echo $correo['IdCorreoCliente']; ?>)">
+                                            <i class="material-icons">create</i>
+                                        </button>
+                                        <button class="mdl-button mdl-js-button mdl-button--accent" onclick="EliminarCorreo(<?php echo $correo['IdCorreoCliente']; ?>)">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </div>
                             </tr>
                             <?php } ?>
                     </tbody>
                 </table>
-                <button class="pull-right mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="AgregarCorreo()">
+                <button id="add-correo" style="color: white; " class="pull-right mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="AgregarCorreo()">
                   <i class="material-icons">add</i>
                 </button>
+                <div class="mdl-tooltip" data-mdl-for="add-correo">
+                    Agregar Correo
+                </div>
             </div>
         </div>
     </section>
     <section class="mdl-layout__tab-panel" id="scroll-tab-3">
         <div class="page-content">
+            <a id="add-maintance" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="AgregarGarante()">
+                <i class="material-icons" style="color: white;">add</i>
+            </a>
+            <div class="mdl-tooltip" data-mdl-for="add-maintance">
+                Agregar Garante
+            </div>
             <br/>
             <br/>
             <div class="Container100">
@@ -380,75 +419,103 @@
                 <div class="mdl-card__actions mdl-card--border"></div>
                 <div class="container-fluid">
                     <div class="row">
-
-
                         <?php
-                            $query_garantia = mysql_query("SELECT * FROM `garantecliente` WHERE `IdCliente` = '$IdCliente'") or trigger_error(mysql_error()); 
-                            while($garantia = mysql_fetch_array($query_garantia)){ 
-                                foreach($garantia AS $key => $value) { $garantia[$key] = stripslashes($value); } 
+                            $query_garante = mysql_query("SELECT * FROM `garantecliente` WHERE `IdCliente` = '$IdCliente'") or trigger_error(mysql_error()); 
+                            while($garante = mysql_fetch_array($query_garante)){ 
+                                foreach($garante AS $key => $value) { $garante[$key] = stripslashes($value); } 
                             ?>
-                            <div class="mdl-card mdl-shadow--2dp ContainerIndent">
+                            <div class="mdl-card mdl-shadow--2dp ContainerIndent" style="margin-bottom: 10px;">
                                 <div class="mdl-card__title mdl-card--border">
                                     <h2 class="mdl-card__title-text">
-                                        <?php echo $garantia['IdGaranteCliente'] . " " . $garantia['Tipo']; ?>
+                                        <?php echo $garante['Tipo']; ?>
                                     </h2>
                                 </div>
                                 <div class="mdl-card__supporting-text mdl-card--border">
-
                                     <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <h6>Descripci&oacute;n: </h6>
+                                            <div>
+                                                <?php echo $garante['Descripcion']; ?>
+                                            </div><br/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6>Observaci&oacute;n: </h6>
+                                            <div>
+                                                <?php echo $garante['Observacion']; ?>
+                                            </div><br/>
+                                        </div>
 
-                                        <button data-toggle="collapse" data-target="#demo">Ver Detalles</button>
-
-                                        <div id="demo" class="collapse">
-
-                                            <div class="col-md-6">
-                                                C&oacute;digo Cliente:
-                                                <?php echo $garantia['CodigoCliente']; ?><br/> Grupo:
-                                                <?php echo $garantia['IdGrupo']; ?><br/> L&iacute;mite Cr&eacute;dito: Q.
-                                                <?php echo $garantia['LimiteCredito'] ?><br/>
-                                            </div>
-                                            <div class="col-md-6">
-                                                DPI:
-                                                <?php echo $garantia['DPI'] ?><br/> NIT:
-                                                <?php echo $garantia['NIT'] ?><br/> Correo Electr&oacute;nico:
-                                                <?php echo $garantia['NIT'] ?>
+                                        <div class="collapse" id="garante-cliente-<?php echo $garante[ 'IdGaranteCliente']; ?>">
+                                            <div class="col-md-12">
+                                                <?php if(strcmp($garante['Tipo'],"Propiedad") == 0): ?>
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <h6>Direcci&oacute;n de la Propiedad: </h6>
+                                                        <?php echo $garante['DireccionPropiedad']; ?>
+                                                    </div><br/>
+                                                    <div>
+                                                        <h6>Tiempo de la Propiedad: </h6>
+                                                        <?php echo $garante['TiempoPropiedad'] . " A&ntilde;os"; ?>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <h6>Tipo de Propiedad: </h6>
+                                                        <?php echo $garante['TipoPropiedad']; ?>
+                                                    </div><br/>
+                                                    <div>
+                                                        <h6>Descripci&oacute;n de la Propiedad: </h6>
+                                                        <?php echo $garante['DescripcionPropiedad']; ?>
+                                                    </div>
+                                                </div>
+                                                <?php else: ?>
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <h6>Tipo de Veh&iacute;culo: </h6>
+                                                        <?php echo $garante['TipoVehiculo']; ?>
+                                                    </div><br/>
+                                                    <div>
+                                                        <h6>Estado del Veh&iacute;culo: </h6>
+                                                        <?php echo $garante['EstadoVehiculo']; ?>
+                                                    </div><br/>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <h6>Tiempo de uso del Veh&iacute;culo: </h6>
+                                                        <?php echo $garante['UsoVehiculo'] . " A&ntilde;os"; ?>
+                                                    </div><br/>
+                                                    <div>
+                                                        <h6>Descripci&oacute;n del Veh&iacute;culo: </h6>
+                                                        <?php echo $garante['DescripcionVehiculo']; ?>
+                                                    </div><br/>
+                                                </div>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="mdl-card__actions mdl-card--border">
-                                    <button class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect">
-                  Ver Pagos
-                </button>
-                                    <button class="mdl-button mdl-js-button mdl-button--accent mdl-js-ripple-effect">
-                  Ver Prestamos
-                </button>
+                                    <button data-toggle="collapse" data-target="#garante-cliente-<?php echo $garante['IdGaranteCliente']; ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                                      Ver Detalle
+                                    </button>
                                 </div>
                                 <div class="mdl-card__menu">
-                                    <button id="demo-menu-lower-right<?php echo $garantia['IdCliente']; ?>" class="mdl-button mdl-js-button mdl-button--icon">
-                  <i class="material-icons">more_vert</i>
-                </button>
+                                    <button id="demo-menu-lower-right-garante_cliente<?php echo $garante['IdGaranteCliente']; ?>" class="mdl-button mdl-js-button mdl-button--icon">
+                                      <i class="material-icons">more_vert</i>
+                                    </button>
 
-                                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right<?php echo $garantia['IdCliente']; ?>">
-                                        <a href="eliminarCliente.php?IdCliente=<?php echo $garantia[ 'IdCliente']; ?>">
+                                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right-garante_cliente<?php echo $garante['IdGaranteCliente']; ?>">
+                                        <a onclick="ModificarGarante(<?php echo $garante['IdGaranteCliente']; ?>)">
                                             <li class="mdl-menu__item">
-                                                <button class="mdl-button mdl-js-button mdl-button--icon">
-                              <i class="material-icons">info</i>
-                            </button> Ver
-                                            </li>
-                                        </a>
-                                        <a href="modificarCliente.php?IdCliente=<?php echo $garantia[ 'IdCliente']; ?>">
-                                            <li class="mdl-menu__item">
-                                                <button class="mdl-button mdl-js-button mdl-button--icon">
+                                                <button class="mdl-button mdl-js-button mdl-button--icon" onclick="ModificarGarante(<?php echo $garante['IdGaranteCliente']; ?>)">
                               <i class="material-icons">create</i>
                             </button> Editar
                                             </li>
                                         </a>
-                                        <a href="eliminarCliente.php?IdCliente=<?php echo $garantia[ 'IdCliente']; ?>">
-                                            <li class="mdl-menu__item">
-                                                <button class="mdl-button mdl-js-button mdl-button--icon">
-                              <i class="material-icons">delete</i>
+                                        <a onclick="EliminarGarante(<?php echo $garante['IdGaranteCliente']; ?>)">
+                                            <li class=" mdl-menu__item ">
+                                                <button class="mdl-button mdl-js-button mdl-button--icon " onclick="EliminarGarante(<?php echo $garante['IdGaranteCliente']; ?>)">
+                              <i class="material-icons ">delete</i>
                             </button> Eliminar
                                             </li>
                                         </a>
@@ -461,41 +528,134 @@
             </div>
         </div>
     </section>
-    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+    <section class="mdl-layout__tab-panel" id="scroll-tab-4">
         <div class="page-content">
-            <!-- Your content goes here -->
+            <a id="add-maintance" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="AgregarReferencia()">
+                <i class="material-icons" style="color: white;">add</i>
+            </a>
+            <div class="mdl-tooltip" data-mdl-for="add-maintance">
+                Agregar Referencia
+            </div>
+            <br/>
+            <br/>
+            <div class="Container100">
+                <div class="ContainerIndent TextAlCenter">
+                    <h5>Referencias del Cliente</h5>
+                </div>
+                <div class="mdl-card__actions mdl-card--border"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <?php
+                            $query_referencia = mysql_query("SELECT * FROM `referenciacliente` WHERE `IdCliente` = '$IdCliente'") or trigger_error(mysql_error()); 
+                            while($referencia = mysql_fetch_array($query_referencia)){ 
+                                foreach($referencia AS $key => $value) { $referencia[$key] = stripslashes($value); } 
+                            ?>
+                            <div class="mdl-card mdl-shadow--2dp ContainerIndent" style="margin-bottom: 10px;">
+                                <div class="mdl-card__title mdl-card--border">
+                                    <h2 class="mdl-card__title-text">
+                                        <?php echo $referencia['Nombre']; ?>
+                                    </h2>
+                                </div>
+                                <div class="mdl-card__supporting-text mdl-card--border">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <div>
+                                                <h6>DPI: </h6>
+                                                <?php echo $referencia['DPI']; ?>
+                                            </div><br/>
+                                            <div>
+                                                <h6>Tel&eacute;fono: </h6>
+                                                <?php echo $referencia['Telefono'] . " - " . $referencia['DescripcionTelefono']; ?>
+                                            </div><br/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div>
+                                                <h6>Correo Electr&oacute;nico: </h6>
+                                                <?php echo $referencia['Correo']; ?>
+                                            </div><br/>
+                                            <div>
+                                                <h6>Direcci&oacute;n: </h6>
+                                                <?php echo $referencia['Direccion']; ?>
+                                            </div><br/>
+                                        </div>
+
+                                        <div class="collapse" id="referencia-cliente-<?php echo $referencia['IdReferenciaCliente']; ?>">
+                                            <div class="col-md-12"><b>Datos de la Empresa</b>
+                                                <hr/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <h6>Nombre de la Empresa: </h6>
+                                                        <?php echo $referencia['NombreEmpresa']; ?>
+                                                    </div><br/>
+                                                    <div>
+                                                        <h6>Nit de la Empresa: </h6>
+                                                        <?php echo $referencia['NitEmpresa'] . " A&ntilde;os"; ?>
+                                                    </div><br/>
+                                                    <div>
+                                                        <h6>Tel&eacute;fono de la Empresa: </h6>
+                                                        <?php echo $referencia['TelefonoEmpresa'] . " A&ntilde;os"; ?>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <h6>Correo Electr&oacute;nico de la Empresa: </h6>
+                                                        <?php echo $referencia['CorreoEmpresa']; ?>
+                                                    </div><br/>
+                                                    <div>
+                                                        <h6>Direcci&oacute;n de la Empresa: </h6>
+                                                        <?php echo $referencia['DireccionEmpresa']; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mdl-card__actions mdl-card--border">
+                                    <button data-toggle="collapse" data-target="#referencia-cliente-<?php echo $referencia['IdReferenciaCliente']; ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                                      Ver Detalle
+                                    </button>
+                                </div>
+                                <div class="mdl-card__menu">
+                                    <button id="demo-menu-lower-right-referencia_cliente<?php echo $referencia['IdReferenciaCliente']; ?>" class="mdl-button mdl-js-button mdl-button--icon">
+                                      <i class="material-icons">more_vert</i>
+                                    </button>
+
+                                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right-referencia_cliente<?php echo $referencia['IdReferenciaCliente']; ?>">
+                                        <a onclick="ModificarReferencia(<?php echo $referencia['IdReferenciaCliente']; ?>)">
+                                            <li class="mdl-menu__item">
+                                                <button class="mdl-button mdl-js-button mdl-button--icon" onclick="ModificarReferencia(<?php echo $referencia['IdReferenciaCliente']; ?>)">
+                              <i class="material-icons">create</i>
+                            </button> Editar
+                                            </li>
+                                        </a>
+                                        <a onclick="EliminarReferencia(<?php echo $referencia['IdReferenciaCliente']; ?>)">
+                                            <li class=" mdl-menu__item ">
+                                                <button class="mdl-button mdl-js-button mdl-button--icon " onclick="EliminarReferencia(<?php echo $referencia['IdReferenciaCliente']; ?>)">
+                              <i class="material-icons ">delete</i>
+                            </button> Eliminar
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </div>
+                            </div>
+                            <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="scroll-tab-5">
+        <div class="page-content ">
+            Prestamos
         </div>
     </section>
 
+
     <?php } 
-        require_once("config/page/footer.php"); 
-        require_once("config/page/maintance_imports.php"); 
+        require_once("config/page/footer.php "); 
     ?>
-    <script type="text/javascript">
-        function AdjustIframeHeightOnLoad() {
-            document.getElementById("form-iframe").style.height = document.getElementById("form-iframe").contentWindow.document.body.scrollHeight + "px";
-        }
-
-        function AdjustIframeHeight(i) {
-            document.getElementById("form-iframe").style.height = parseInt(i) + "px";
-        }
-
-    </script>
-
-    <div class="modal fade" id="modal_telefono" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 id="module_title"></h4>
-
-                </div>
-                <iframe id="form-iframe" style="margin:0; width:100%; border:none; overflow:hidden;" scrolling="no" onload="AdjustIframeHeightOnLoad()"></iframe>
-            </div>
-        </div>
-    </div>
     <?php
         $actual_link = str_replace("&Tab=0", "", $actual_link);
         $actual_link = str_replace("&Tab=1", "", $actual_link);
@@ -508,20 +668,14 @@
         $actual_link = str_replace("&", "%26", $actual_link);
     ?>
 
-        <script type="text/javascript">
+        <script type="text/javascript ">
             var ModificarTelefono = function(IdTelefonoCliente) {
                 window.location.href = "mantenimientoTelefono.php?IdTelefonoCliente=" + IdTelefonoCliente +
-                    "&Accion=Modificar&Referencia=<?php echo $actual_link; ?>%26Tab=1%23crud_telefonos";
+                    " &Accion=Modificar&Referencia=<?php echo $actual_link; ?>%26Tab=1%23crud_telefonos";
             };
-
             var EliminarTelefono = function(IdTelefonoCliente) {
-                /*document.getElementById("form-iframe").src = "config/frames/frame_crud_telefono.php?IdTelefonoCliente=" + IdTelefonoCliente +
-                    "&Accion=Eliminar&Referencia=<?php //echo $actual_link; ?>#crud_telefonos";
-                document.getElementById("module_title").innerHTML = TituloMantenimiento;*/
-                window.location.href = "mantenimientoTelefono.php?IdTelefonoCliente=" + IdTelefonoCliente +
-                    "&Accion=Eliminar&Referencia=<?php echo $actual_link; ?>%26Tab=1%23crud_telefonos";
+                window.location.href = "mantenimientoTelefono.php?IdTelefonoCliente=" + IdTelefonoCliente + "&Accion=Eliminar&Referencia=<?php echo $actual_link; ?>%26Tab=1%23crud_telefonos";
             };
-
             var AgregarTelefono = function() {
                 window.location.href = "mantenimientoTelefono.php?Accion=Agregar&IdCliente=<?php echo $IdCliente; ?>&Referencia=<?php echo $actual_link; ?>%26Tab=1%23crud_telefonos";
             };
@@ -556,6 +710,38 @@
 
             var AgregarCorreo = function() {
                 window.location.href = "mantenimientoCorreo.php?Accion=Agregar&IdCliente=<?php echo $IdCliente; ?>&Referencia=<?php echo $actual_link; ?>%26Tab=1%23crud_correos";
+            };
+
+        </script>
+        <script type="text/javascript">
+            var EliminarGarante = function(IdGaranteCliente) {
+                window.location.href = "eliminarGaranteCliente.php?IdGaranteCliente=" + IdGaranteCliente +
+                    "&Referencia=<?php echo $actual_link; ?>%26Tab=2";
+            };
+
+            var ModificarGarante = function(IdGaranteCliente) {
+                window.location.href = "modificarGaranteCliente.php?IdGaranteCliente=" + IdGaranteCliente +
+                    "&Referencia=<?php echo $actual_link; ?>%26Tab=2";
+            };
+
+            var AgregarGarante = function() {
+                window.location.href = "agregarGaranteCliente.php?IdCliente=<?php echo $IdCliente; ?>&Referencia=<?php echo $actual_link; ?>%26Tab=2";
+            };
+
+        </script>
+        <script type="text/javascript">
+            var EliminarReferencia = function(IdReferenciaCliente) {
+                window.location.href = "eliminarReferenciaCliente.php?IdReferenciaCliente=" + IdReferenciaCliente +
+                    "&Referencia=<?php echo $actual_link; ?>%26Tab=3";
+            };
+
+            var ModificarReferencia = function(IdReferenciaCliente) {
+                window.location.href = "modificarReferenciaCliente.php?IdReferenciaCliente=" + IdReferenciaCliente +
+                    "&Referencia=<?php echo $actual_link; ?>%26Tab=3";
+            };
+
+            var AgregarReferencia = function() {
+                window.location.href = "agregarReferenciaCliente.php?IdCliente=<?php echo $IdCliente; ?>&Referencia=<?php echo $actual_link; ?>%26Tab=3";
             };
 
         </script>

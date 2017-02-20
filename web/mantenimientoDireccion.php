@@ -7,7 +7,7 @@
 
     switch ($_GET['Accion']) {
         case 'Agregar':
-            $page_title = "AIINV - Agregar Dirección";
+            $page_title = "Agregar Dirección";
             if(isset($_POST['Added'])) {
                 foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); } 
                 $IdCliente = $_GET['IdCliente'];
@@ -19,7 +19,7 @@
             break;
             
         case 'Eliminar':
-            $page_title = "AIINV - Eliminar Dirección";
+            $page_title = "Eliminar Dirección";
             if(isset($_POST['Deleted'])) {
                 foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); } 
                 $sql = "DELETE FROM `direccioncliente` WHERE `IdDireccionCliente` = " . $direccion_cliente['IdDireccionCliente']; 
@@ -30,7 +30,7 @@
             break;
         
         case 'Modificar':
-            $page_title = "AIINV - Modificar Dirección";
+            $page_title = "Modificar Dirección";
             if(isset($_POST['Modified'])) {
                 foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); } 
                 $sql = "UPDATE `direccioncliente` SET `Direccion` =  '{$_POST['Direccion']}' ,  `Descripcion` =  '{$_POST['Descripcion']}'   WHERE `IdDireccionCliente` = " . $direccion_cliente['IdDireccionCliente']; 
@@ -43,9 +43,8 @@
         default:
             break;
     }
-
+    $page_maintance = true;
     require_once("config/page/header.php"); 
-    require_once("config/page/maintance_imports.php"); 
 ?>
 
     <?php 
@@ -59,7 +58,7 @@
                 <div class="mdl-textfield mdl-js-textfield">
                     <input class="mdl-textfield__input" type="text" maxlength="50" required name="Direccion" id="Direccion" />
                     <label class="mdl-textfield__label" for="Direccion">Direcci&oacute;n</label>
-                    <span class="mdl-textfield__error">Debe ingresar un direcci&oacute;n v&aacute;lido</span>
+                    <span class="mdl-textfield__error">Debe ingresar una direcci&oacute;n v&aacute;lida</span>
                 </div>
             </p>
             <p>
@@ -70,7 +69,7 @@
         <div class="modal-footer">
             <input type="hidden" name="Added" id="Added" value="1" />
             <input type="hidden" name="IdCliente" id="IdCliente" value="<?php echo $IdCliente; ?>" />
-            <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="window.location.href='<?php echo $url_referencia; ?>'">
+            <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="regresar()">
                 Cancelar
             </button>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type='submit' style="color: white;"> Ingresar
@@ -88,7 +87,7 @@
                     <div class="mdl-textfield mdl-js-textfield">
                         <input class="mdl-textfield__input" readonly disabled type="text" maxlength="50" required name="Direccion" id="Direccion" value="<?php echo stripslashes($direccion_cliente['Direccion']); ?>" />
                         <label class="mdl-textfield__label" for="Direccion">Direcci&oacute;n</label>
-                        <span class="mdl-textfield__error">Debe ingresar un direcci&oacute;n v&aacute;lido</span>
+                        <span class="mdl-textfield__error">Debe ingresar una direcci&oacute;n v&aacute;lida</span>
                     </div>
                 </p>
                 <p>
@@ -99,7 +98,7 @@
             <div class="modal-footer">
                 <p><strong>¿Desea eliminar este registro?</strong></p>
                 <input type="hidden" name="Deleted" id="Deleted" value="1" />
-                <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="window.location.href='<?php echo $url_referencia; ?>'">
+                <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="regresar()">
                 Cancelar
             </button>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type='submit' style="color: white;">
@@ -119,7 +118,7 @@
                     <div class="mdl-textfield mdl-js-textfield">
                         <input class="mdl-textfield__input" type="text" maxlength="50" required name="Direccion" id="Direccion" value="<?php echo stripslashes($direccion_cliente['Direccion']); ?>" />
                         <label class="mdl-textfield__label" for="Direccion">Direcci&oacute;n</label>
-                        <span class="mdl-textfield__error">Debe ingresar un direcci&oacute;n v&aacute;lido</span>
+                        <span class="mdl-textfield__error">Debe ingresar una direcci&oacute;n v&aacute;lida</span>
                     </div>
                 </p>
                 <p>
@@ -129,7 +128,7 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" name="Modified" id="Modified" value="1" />
-                <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="window.location.href='<?php echo $url_referencia; ?>'">
+                <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="regresar()">
                 Cancelar
             </button>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type='submit' style="color: white;">
@@ -142,5 +141,11 @@
                 }
         
                 require_once("config/page/header.php");
-                require_once("config/page/maintance_imports.php"); 
         ?>
+
+            <script type="text/javascript">
+                var regresar = function() {
+                    window.location.href = '<?php echo $url_referencia; ?>';
+                }
+
+            </script>

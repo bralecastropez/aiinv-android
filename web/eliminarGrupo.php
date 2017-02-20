@@ -1,7 +1,8 @@
 <?php
     require_once("config/db/session.php");
-    $page_title = "AIINV - Eliminar Grupo";
+    $page_title = "Eliminar Grupo";
     require_once("config/page/header.php");
+
     if (isset($_GET['IdGrupo']) ) { 
         $IdGrupo = (int) $_GET['IdGrupo']; 
         if (isset($_POST['submitted'])) { 
@@ -21,10 +22,11 @@
             <textarea type='text' disabled name='Descripcion' placeholder="Descripci&oacute;n" class="md-textarea"><?= stripslashes($row['Descripcion']) ?></textarea>
         </p>
         <p>
-            <h5 style="margin: 20px;">¿Desea eliminar el registro?</h5>
+            <h5 style="margin: 20px;">¿Desea eliminar el registro?</h5><br/>
             <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="window.location.href='listarGrupos.php'">
                 Cancelar
-            </button> | <button style="margin-left: 10px; color: white;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type='submit'>
+            </button>
+            <button style="margin-left: 10px; color: white;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type='submit'>
                 Eliminar
             </button>
             <input type='hidden' value='1' name='submitted' />

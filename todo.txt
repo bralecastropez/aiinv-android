@@ -13,10 +13,25 @@
 
 # Clientes
 + Listar Clientes
-- Agregar Cliente
++ Agregar Cliente
 - Eliminar Cliente
-- Modificar Cliente
++ Modificar Cliente
 - Ver Cliente
-- Agregar Telefono Cliente
-- Eliminar Telefono Cliente
++ Crud Telefono Cliente
++ Crud Correo Cliente
++ Crud Direccion Cliente
++ Crud Referencias Cliente
++ Crud Garantias Cliente
+
+# Prestamos
+- Agregar Prestamo
+- Modificar Prestamo
+- Eliminar Prestamo
+- Listar Prestamo
+
+# Pagos
+- Agregar Pago
+- Modificar Pago
+- Eliminar Pago
+- Listar Pagos
 

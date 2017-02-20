@@ -1,7 +1,9 @@
 <?php
     require_once("config/db/session.php");
     $page_title = "AIINV - Editar Grupo";
+    $page_maintance = true;
     require_once("config/page/header.php");
+
     if (isset($_GET['IdGrupo']) ) { 
         $IdGrupo = (int) $_GET['IdGrupo']; 
         if (isset($_POST['submitted'])) { 

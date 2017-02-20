@@ -13,7 +13,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
 
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="stylesheet" href="css/mdl/MaterialIcons.css" />
         <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" />
 
         <!-- Bootstrap core CSS -->
@@ -32,6 +32,32 @@
 
         <!-- Primefaces Core -->
         <link rel="stylesheet" href="css/core-layout.css">
+
+        <?php if (isset($page_maintance)): ?>
+        <?php if (is_bool($page_maintance) === true): ?>
+        <!-- Select -->
+        <link rel="stylesheet" href="css/mdl-selectfield/dist/mdl-selectfield.min.css">
+
+        <!-- Style for Inputs -->
+        <style>
+            .mdl-textfield,
+            .mdl-selectfield {
+                width: 100%;
+            }
+
+        </style>
+
+        <!-- Select js -->
+        <script src="css/mdl-selectfield/dist/mdl-selectfield.min.js"></script>
+
+        <!-- Date picker -->
+        <link rel="stylesheet" href="css/bootstrap-material-datetimepicker.css" />
+
+        <!-- jQuery Mask-Plugin -->
+        <script type="text/javascript" src="js/jquery.mask.js"></script>
+
+        <?php endif; ?>
+        <?php endif; ?>
 
     </head>
 
@@ -82,17 +108,17 @@
                             <label class="mdl-textfield__label" for="search">Ingresa tu consulta...</label>
                         </div>
                     </div>-->
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
                         <i class="material-icons">more_vert</i>
                       </button>
-<ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-    <?php if(isset($_SESSION['login_user'])): ?>
-    <li class="mdl-menu__item"><a href="config/db/logout.php">Cerrar Sesi&oacute;n</a></li>
-    <?php endif?>
-    <li class="mdl-menu__item">Cont&aacute;ctanos</li>
-    <li class="mdl-menu__item">Informaci&oacute;n Legal</li>
-    <li class="mdl-menu__item" data-toggle="modal" data-target="#myModal">Acerca De</li>
-</ul>
+                    <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+                        <?php if(isset($_SESSION['login_user'])): ?>
+                        <li class="mdl-menu__item"><a href="config/db/logout.php">Cerrar Sesi&oacute;n</a></li>
+                        <?php endif?>
+                        <li class="mdl-menu__item">Cont&aacute;ctanos</li>
+                        <li class="mdl-menu__item">Informaci&oacute;n Legal</li>
+                        <li class="mdl-menu__item" data-toggle="modal" data-target="#myModal">Acerca De</li>
+                    </ul>
                 </div>
                 <div class="mdl-layout-spacer"></div>
                 <?php 

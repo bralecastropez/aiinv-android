@@ -1,6 +1,7 @@
 <?php
     require_once("config/db/session.php");
-    $page_title = "AIINV - Agregar Grupo";
+    $page_title = "Agregar Grupo";
+    $page_maintance = true;
     require_once("config/page/header.php");
     if (isset($_POST['submitted'])) { 
         foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); } 
