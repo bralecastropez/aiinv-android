@@ -66,6 +66,10 @@ h6 {
     display: inherit;
 }
 
+.MaintanceResponsive {
+    width: inherit;
+}
+
 .FloatNoneOnMobile {}
 
 .show {
@@ -1108,6 +1112,9 @@ textarea {
         display: inherit;
         opacity: 1;
     }
+    .MaintanceResponsive {
+        width: 50%;
+    }
 }
 
 @media (min-width: 960px) and (max-width:1200px) {
@@ -1159,6 +1166,9 @@ textarea {
     .ShowMin {
         display: none;
         opacity: 0;
+    }
+    .MaintanceResponsive {
+        width: 50%;
     }
     .FloatNoneOnMobile {
         float: none !important;
@@ -1302,6 +1312,9 @@ textarea {
         display: none;
         opacity: 0;
     }
+    .MaintanceResponsive {
+        width: 50%;
+    }
     .FloatNoneOnMobile {
         float: none !important;
     }
@@ -1435,6 +1448,9 @@ textarea {
     .ShowMax {
         display: none;
         opacity: 0;
+    }
+    .MaintanceResponsive {
+        width: 100%;
     }
     .FloatNoneOnMobile {
         float: none !important;

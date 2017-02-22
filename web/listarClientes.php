@@ -1,5 +1,6 @@
 <?php
     require_once("config/db/session.php");
+    require_once("config/db/handler.php");
     $page_title = "Clientes";
     require_once("config/page/header.php");
 ?>
@@ -41,16 +42,32 @@
                 </div>
                 <div class="mdl-card__supporting-text mdl-card--border">
                     <div class="col-md-6">
-                        C&oacute;digo Cliente:
-                        <?php echo $row['CodigoCliente']; ?><br/> Grupo:
-                        <?php echo $row['IdGrupo']; ?><br/> L&iacute;mite Cr&eacute;dito: Q.
-                        <?php echo $row['LimiteCredito'] ?><br/>
+                        <div>
+                            <b>C&oacute;digo Cliente:</b>
+                            <?php echo $row['CodigoCliente']; ?>
+                        </div>
+                        <div>
+                            <b>Grupo:</b>
+                            <?php echo ObtenerGrupo($row['IdGrupo'])['Nombre']; ?>
+                        </div>
+                        <div>
+                            <b>L&iacute;mite Cr&eacute;dito:</b> Q.
+                            <?php echo $row['LimiteCredito'] ?>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        DPI:
-                        <?php echo $row['DPI'] ?><br/> NIT:
-                        <?php echo $row['NIT'] ?><br/> Correo Electr&oacute;nico:
-                        <?php echo $row['NIT'] ?>
+                        <div>
+                            <b>DPI:</b>
+                            <?php echo $row['DPI']; ?>
+                        </div>
+                        <div>
+                            <b>Nit:</b>
+                            <?php echo $row['NIT']; ?>
+                        </div>
+                        <div>
+                            <b>Fecha de Modificaci&oacute;n:</b>
+                            <?php echo $row['FechaModificacion'] ?>
+                        </div>
                     </div>
 
                 </div>

@@ -1,8 +1,8 @@
 <?php
     require_once("config/db/session.php");
     $page_title = "Editar Garante";
+    $page_maintance = true;
     require_once("config/page/header.php");
-    require_once("config/page/maintance_imports.php");
 
     $TiposDePropiedad = array("Propia", "Alquilada", "Otro");
     $TiposDeVehiculos = array("Propio", "Alquilado", "Otro");
@@ -28,7 +28,7 @@
         } 
         $garante = mysql_fetch_array(mysql_query("SELECT * FROM `garantecliente` WHERE `IdGaranteCliente` = '$IdGaranteCliente' ")); 
 ?>
-    <div class="Container100 Responsive50">
+    <div class="Container100">
         <br/>
         <br/>
         <div class="Container100">
@@ -37,19 +37,19 @@
             </div>
             <hr/>
         </div>
-        <div class="ContainerIndent Responsive">
+        <div class="ContainerIndent">
             <?php if(strcmp($garante['Tipo'],"Propiedad") == 0): ?>
             <form method="post" action="" data-toggle="validator" role="form">
-                <div class="Container50 Responsive50">
-                    <div class="ContainerIndent Responsive">
+                <div class="Container50 MaintanceResponsive">
+                    <div class="ContainerIndent">
                         <p>
                             <b>Descripci&oacute;n:</b><br />
                             <textarea disabled readonly type='text' name='Descripcion' placeholder="Descripci&oacute;n" class="md-textarea"><?= stripslashes($garante["Descripcion"]) ?></textarea>
                         </p>
                     </div>
                 </div>
-                <div class="Container50 Responsive50">
-                    <div class="ContainerIndent Responsive">
+                <div class="Container50 MaintanceResponsive">
+                    <div class="ContainerIndent">
                         <p>
                             <b>Observaci&oacute;n:</b><br />
                             <textarea disabled readonly type='text' name='Observacion' placeholder="Observaci&oacute;n" class="md-textarea"><?= stripslashes($garante["Observacion"]) ?></textarea>
@@ -63,8 +63,8 @@
                     </div>
                     <hr/>
                 </div>
-                <div class="Container50 Responsive50">
-                    <div class="ContainerIndent Responsive">
+                <div class="Container50 MaintanceResponsive">
+                    <div class="ContainerIndent">
                         <p>
                             <b>Direcci&oacute;n:</b><br />
                             <textarea disabled readonly type='text' name='DireccionPropiedad' placeholder="Direcci&oacute;n" class="md-textarea"><?= stripslashes($garante["DireccionPropiedad"]) ?></textarea>
@@ -78,8 +78,8 @@
                         </p>
                     </div>
                 </div>
-                <div class="Container50 Responsive50">
-                    <div class="ContainerIndent Responsive">
+                <div class="Container50 MaintanceResponsive">
+                    <div class="ContainerIndent">
                         <p>
                             <b>Descripci&oacute;n de la Propiedad (Opcional):</b><br />
                             <textarea disabled readonly type='text' name='DescripcionPropiedad' placeholder="Descripci&oacute;n" class="md-textarea"><?= stripslashes($garante["DescripcionPropiedad"]) ?></textarea>
@@ -103,8 +103,8 @@
                         </p>
                     </div>
                 </div>
-                <div class="Container100 Responsive50">
-                    <div class="ContainerIndent Responsive">
+                <div class="Container100">
+                    <div class="ContainerIndent">
                         <p>
                             <h5 style="margin: 20px;">¿Desea eliminar el registro?</h5><br/>
                             <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="regresar()">
@@ -122,16 +122,16 @@
             </form>
             <?php else: ?>
             <form method="post" action="" data-toggle="validator" role="form">
-                <div class="Container50 Responsive50">
-                    <div class="ContainerIndent Responsive">
+                <div class="Container50 MaintanceResponsive">
+                    <div class="ContainerIndent">
                         <p>
                             <b>Descripci&oacute;n:</b><br />
                             <textarea disabled readonly type='text' name='Descripcion' placeholder="Descripci&oacute;n" class="md-textarea"><?= stripslashes($garante["Descripcion"]) ?></textarea>
                         </p>
                     </div>
                 </div>
-                <div class="Container50 Responsive50">
-                    <div class="ContainerIndent Responsive">
+                <div class="Container50 MaintanceResponsive">
+                    <div class="ContainerIndent">
                         <p>
                             <b>Observaci&oacute;n:</b><br />
                             <textarea disabled readonly type='text' name='Observacion' placeholder="Observaci&oacute;n" class="md-textarea"><?= stripslashes($garante["Observacion"]) ?></textarea>
@@ -145,8 +145,8 @@
                     </div>
                     <hr/>
                 </div>
-                <div class="Container50 Responsive50">
-                    <div class="ContainerIndent Responsive">
+                <div class="Container50 MaintanceResponsive">
+                    <div class="ContainerIndent">
                         <p>
                             <b>Estado del Veh&iacute;culo:</b>
                             <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
@@ -173,8 +173,8 @@
                         </p>
                     </div>
                 </div>
-                <div class="Container50 Responsive50">
-                    <div class="ContainerIndent Responsive">
+                <div class="Container50 MaintanceResponsive">
+                    <div class="ContainerIndent">
                         <p>
                             <b>Tipo de Veh&iacute;culo:</b>
                             <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
@@ -198,8 +198,8 @@
                         </p>
                     </div>
                 </div>
-                <div class="Container100 Responsive50">
-                    <div class="ContainerIndent Responsive">
+                <div class="Container100">
+                    <div class="ContainerIndent">
                         <p>
 
                             <h5 style="margin: 20px;">¿Desea eliminar el registro?</h5><br/>
@@ -229,5 +229,4 @@
     </script>
     <?php
         require_once("config/page/footer.php"); 
-        require_once("config/page/maintance_scripts.php"); 
     ?>

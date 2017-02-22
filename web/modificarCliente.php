@@ -580,7 +580,9 @@
                                         </div>
 
                                         <div class="collapse" id="referencia-cliente-<?php echo $referencia['IdReferenciaCliente']; ?>">
-                                            <div class="col-md-12"><b>Datos de la Empresa</b>
+                                            <div class="col-md-12">
+                                                <hr/>
+                                                <b>Datos de la Empresa</b>
                                                 <hr/>
                                             </div>
                                             <div class="col-md-12">
@@ -591,11 +593,11 @@
                                                     </div><br/>
                                                     <div>
                                                         <h6>Nit de la Empresa: </h6>
-                                                        <?php echo $referencia['NitEmpresa'] . " A&ntilde;os"; ?>
+                                                        <?php echo $referencia['NitEmpresa']; ?>
                                                     </div><br/>
                                                     <div>
                                                         <h6>Tel&eacute;fono de la Empresa: </h6>
-                                                        <?php echo $referencia['TelefonoEmpresa'] . " A&ntilde;os"; ?>
+                                                        <?php echo $referencia['TelefonoEmpresa']; ?>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -648,7 +650,113 @@
     </section>
     <section class="mdl-layout__tab-panel" id="scroll-tab-5">
         <div class="page-content ">
-            Prestamos
+            <button id="add-maintance" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="color: white;">
+                Ver Prestamos
+            </button>
+            <div class="mdl-tooltip" data-mdl-for="add-maintance">
+                Ver Prestamos
+            </div>
+            <br/>
+            <br/>
+            <div class="Container100">
+                <div class="ContainerIndent TextAlCenter">
+                    <h5>Prestamos del Cliente</h5>
+                </div>
+                <div class="mdl-card__actions mdl-card--border"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <?php
+                            $query_prestamo = mysql_query("SELECT * FROM `prestamo` WHERE `IdCliente` = '$IdCliente'") or trigger_error(mysql_error()); 
+                            while($prestamo = mysql_fetch_array($query_prestamo)){ 
+                                foreach($prestamo AS $key => $value) { $prestamo[$key] = stripslashes($value); } 
+                            ?>
+                            <div class="mdl-card mdl-shadow--2dp ContainerIndent" style="margin-bottom: 10px;">
+                                <div class="mdl-card__title mdl-card--border">
+                                    <h2 class="mdl-card__title-text">
+                                        <?php echo $prestamo['Titulo']; ?>
+                                    </h2>
+                                </div>
+                                <div class="mdl-card__supporting-text mdl-card--border">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <div>
+                                                <b>Total del Prestamo:</b>
+                                                <?php echo " Q. " . $prestamo['MontoParcial']; ?>
+                                            </div><br/>
+                                            <div>
+                                                <b>Monto Pagado: </b>
+                                                <?php echo " Q. " . $prestamo['MontoPagado']; ?>
+                                            </div><br/>
+                                            <div>
+                                                <b>Monto Pendiente: </b>
+                                                <?php echo " Q. " . $prestamo['MontoPendiente']; ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div>
+                                                <b>Cuotas Pagadas:</b>
+                                                <?php echo $prestamo['CuotasPagadas']; ?>
+                                            </div><br/>
+                                            <div>
+                                                <b>Cuotas Pendientes: </b>
+                                                <?php echo $prestamo['CuotasRestantes']; ?>
+                                            </div><br/>
+                                            <div>
+                                                <b>Cuota Mensual: </b>
+                                                <?php echo " Q. " .  $prestamo['CuotaMensual']; ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="collapse" id="prestamo-cliente-<?php echo $prestamo['IdPrestamo']; ?>">
+                                            <div class="col-md-12">
+                                                <hr/>
+                                                <b>Datos del Prestamo</b>
+                                                <hr/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <b>C&oacute;digo del Prestamo: </b>
+                                                        <?php echo $prestamo['CodigoPrestamo']; ?>
+                                                    </div>
+                                                    <div>
+                                                        <b>Periodo de Pago: </b>
+                                                        <?php echo $prestamo['PeriodoPago']; ?>
+                                                    </div>
+                                                    <div>
+                                                        <b>Plazo: </b>
+                                                        <?php echo $prestamo['Plazo']; ?>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <b>Estado: </b>
+                                                        <?php echo $prestamo['Estado']; ?>
+                                                    </div>
+                                                    <div>
+                                                        <b>Inter&eacute;s Mensual: </b>
+                                                        <?php echo $prestamo['InteresMensual']; ?>
+                                                    </div>
+                                                    <div>
+                                                        <b>Fecha de Corte: </b>
+                                                        <?php echo $prestamo['FechaCorte']; ?>
+                                                    </div>
+                                                </div>
+                                                <hr/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mdl-card__actions mdl-card--border">
+                                    <button data-toggle="collapse" data-target="#prestamo-cliente-<?php echo $prestamo['IdPrestamo']; ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                                      Ver Detalle
+                                    </button>
+                                </div>
+                            </div>
+                            <?php } ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

@@ -22,12 +22,12 @@
     $referencia = mysql_fetch_array(mysql_query("SELECT * FROM `referenciacliente` WHERE `IdReferenciaCliente` = '$IdReferenciaCliente'")); 
 ?>
 
-<div class="Container100 Responsive">
-    <div class="ContainerIndent Responsive">
+<div class="Container100">
+    <div class="ContainerIndent">
         <br/>
         <form method="post" action="" data-toggle="validator" role="form">
-            <div class="Container50 Responsive">
-                <div class="ContainerIndent Responsive">
+            <div class="Container50 MaintanceResponsive">
+                <div class="ContainerIndent">
                     <div class="Container100">
                         <div class="ContainerIndent TextAlCenter">
                             <h5>Datos del Referente</h5>
@@ -97,8 +97,8 @@
                     </div><br/>
                 </div>
             </div>
-            <div class="Container50 Responsive">
-                <div class="ContainerIndent Responsive">
+            <div class="Container50 MaintanceResponsive">
+                <div class="ContainerIndent">
                     <div class="Container100">
                         <div class="ContainerIndent TextAlCenter">
                             <h5>Datos de la Empresa</h5>
@@ -148,8 +148,8 @@
                     </div><br/>
                 </div>
             </div>
-            <div class="Container100 Responsive50">
-                <div class="ContainerIndent Responsive">
+            <div class="Container100">
+                <div class="ContainerIndent">
                     <p>
 
                         <h5 style="margin: 20px;">¿Desea eliminar el registro?</h5><br/>

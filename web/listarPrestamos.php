@@ -1,5 +1,7 @@
-<? 
-include('session.php'); 
+<?php
+    require_once("config/db/session.php");
+    $page_title = "Listado de Prestamos";
+    require_once("config/page/header.php");
 echo "<table border=1 >"; 
 echo "<tr>"; 
 echo "<td><b>IdPrestamo</b></td>"; 
@@ -54,4 +56,5 @@ echo "</tr>";
 } 
 echo "</table>"; 
 echo "<a href=agregarPrestamo.php>New Row</a>"; 
+    require_once("config/page/footer.php");
 ?>

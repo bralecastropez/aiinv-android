@@ -20,12 +20,12 @@
     } 
 ?>
 
-    <div class="Container100 Responsive">
-        <div class="ContainerIndent Responsive">
+    <div class="Container100">
+        <div class="ContainerIndent">
             <br/>
             <form method="post" action="" data-toggle="validator" role="form">
-                <div class="Container50 Responsive">
-                    <div class="ContainerIndent Responsive">
+                <div class="Container50 MaintanceResponsive">
+                    <div class="ContainerIndent">
                         <div class="Container100">
                             <div class="ContainerIndent TextAlCenter">
                                 <h5>Datos del Referente</h5>
@@ -65,6 +65,7 @@
                                                 <option value="Personal">Personal</option>
                                                 <option value="Oficina">Oficina</option>
                                                 <option value="Familia">Familia</option>
+                                                <option value="Casa">Casa</option>
                                                 <option value="Otro">Otro</option>
                                             </select>
                                 <span class="mdl-selectfield__error">Seleccione una descripci&oacute;n</span>
@@ -90,8 +91,8 @@
                         </div><br/>
                     </div>
                 </div>
-                <div class="Container50 Responsive">
-                    <div class="ContainerIndent Responsive">
+                <div class="Container50 MaintanceResponsive">
+                    <div class="ContainerIndent">
                         <div class="Container100">
                             <div class="ContainerIndent TextAlCenter">
                                 <h5>Datos de la Empresa</h5>

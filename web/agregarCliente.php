@@ -28,6 +28,8 @@
     } 
 ?>
 
+    <link rel="stylesheet" href="css/mdl-select/getmdl-select.min.css">
+
     <form action='' method='POST' style="margin: 20px;" data-toggle="validator" role="form">
         <h5>
             Datos del Cliente
@@ -97,17 +99,43 @@
                 </div>
                 <div class="col-md-6">
                     <div>
-                        <p><b>Seleccione un Sexo:</b>
-                            <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                <select id="Sexo" name="Sexo" class="mdl-selectfield__select" required>
-                                <option value="" selected></option>
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
-                                <option value="Otro">Otro</option>
-                            </select>
-                                <label class="mdl-textfield__label" for="Sexo">Sexo</label>
-                                <span class="mdl-selectfield__error">Seleccione un sexo</span>
-                            </div>
+                        <p><b>Seleccione un Sexo:</b></p>
+                        <!-- Simple Select -->
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
+                            <input class="mdl-textfield__input" type="text" id="sample1" value="Masculino" required readonly tabIndex="-1">
+                            <label for="sample1">
+                                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                            </label>
+                            <ul for="sample1" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                <li class="mdl-menu__item">Masculino</li>
+                                <li class="mdl-menu__item">Femenino</li>
+                                <li class="mdl-menu__item">Otro</li>
+                            </ul>
+                        </div>
+                        <!-- Select with arrow-->
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
+                            <input class="mdl-textfield__input" type="text" id="sample2" value="Belarus" readonly tabIndex="-1">
+                            <label for="sample2">
+                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+            </label>
+                            <label for="sample2" class="mdl-textfield__label">Country</label>
+                            <ul for="sample2" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                <li class="mdl-menu__item" data-val="DE">Germany</li>
+                                <li class="mdl-menu__item" data-val="BY">Belarus</li>
+                                <li class="mdl-menu__item" data-val="RU">Russia</li>
+                            </ul>
+                        </div>
+
+                        <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                            <select id="Sexo" name="Sexo" class="mdl-selectfield__select" required>
+                                    <option value="" selected></option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            <label class="mdl-textfield__label" for="Sexo">Sexo</label>
+                            <span class="mdl-selectfield__error">Seleccione un sexo</span>
+                        </div>
                     </div><br/>
                     <div>
                         <p><b>Ingrese un Apellido: </b></p>
@@ -163,3 +191,5 @@
 
 
     <?php require_once("config/page/footer.php"); ?>
+
+    <script defer src="css/mdl-select/getmdl-select.min.js"></script>

@@ -25,7 +25,7 @@
     }
 ?>
 
-    <div class="Container100 Responsive50">
+    <div class="Container100">
         <br/>
         <br/>
         <div class="Container100">
@@ -34,9 +34,9 @@
             </div>
             <hr/>
         </div>
-        <div class="ContainerIndent Responsive">
-            <div class="Container100 Responsive50">
-                <div class="ContainerIndent Responsive">
+        <div class="ContainerIndent">
+            <div class="Container100">
+                <div class="ContainerIndent">
                     <p>
                         <b>Seleccione un Tipo:</b>
                         <div class="btn-group" data-toggle="buttons">
@@ -54,16 +54,16 @@
             <div id="propiedad" class="collapse in">
 
                 <form method="post" action="" data-toggle="validator" role="form">
-                    <div class="Container50 Responsive50">
-                        <div class="ContainerIndent Responsive">
+                    <div class="Container50 MaintanceResponsive">
+                        <div class="ContainerIndent">
                             <p>
                                 <b>Ingrese una Descripci&oacute;n (Opcional):</b><br />
                                 <textarea type='text' name='Descripcion' placeholder="Descripci&oacute;n" class="md-textarea"></textarea>
                             </p>
                         </div>
                     </div>
-                    <div class="Container50 Responsive50">
-                        <div class="ContainerIndent Responsive">
+                    <div class="Container50 MaintanceResponsive">
+                        <div class="ContainerIndent">
                             <p>
                                 <b>Ingrese una Observaci&oacute;n (Opcional):</b><br />
                                 <textarea type='text' name='Observacion' placeholder="Observaci&oacute;n" class="md-textarea"></textarea>
@@ -77,8 +77,8 @@
                         </div>
                         <hr/>
                     </div>
-                    <div class="Container50 Responsive50">
-                        <div class="ContainerIndent Responsive">
+                    <div class="Container50 MaintanceResponsive">
+                        <div class="ContainerIndent">
                             <p>
                                 <b>Ingrese una Direcci&oacute;n:</b><br />
                                 <textarea type='text' name='DireccionPropiedad' placeholder="Direcci&oacute;n" class="md-textarea"></textarea>
@@ -92,8 +92,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="Container50 Responsive50">
-                        <div class="ContainerIndent Responsive">
+                    <div class="Container50 MaintanceResponsive">
+                        <div class="ContainerIndent">
                             <p>
                                 <b>Ingrese una Descripci&oacute;n de la Propiedad (Opcional):</b><br />
                                 <textarea type='text' name='DescripcionPropiedad' placeholder="Descripci&oacute;n" class="md-textarea"></textarea>
@@ -113,8 +113,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="Container100 Responsive50">
-                        <div class="ContainerIndent Responsive">
+                    <div class="Container100">
+                        <div class="ContainerIndent">
                             <p>
                                 <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="regresar()">
                                         Cancelar
@@ -132,16 +132,16 @@
             </div>
             <div id="vehiculo" class="collapse">
                 <form method="post" action="" data-toggle="validator" role="form">
-                    <div class="Container50 Responsive50">
-                        <div class="ContainerIndent Responsive">
+                    <div class="Container50 MaintanceResponsive">
+                        <div class="ContainerIndent">
                             <p>
                                 <b>Ingrese una Descripci&oacute;n (Opcional):</b><br />
                                 <textarea type='text' name='Descripcion' placeholder="Descripci&oacute;n" class="md-textarea"></textarea>
                             </p>
                         </div>
                     </div>
-                    <div class="Container50 Responsive50">
-                        <div class="ContainerIndent Responsive">
+                    <div class="Container50 MaintanceResponsive">
+                        <div class="ContainerIndent">
                             <p>
                                 <b>Ingrese una Observaci&oacute;n (Opcional):</b><br />
                                 <textarea type='text' name='Observacion' placeholder="Observaci&oacute;n" class="md-textarea"></textarea>
@@ -155,8 +155,8 @@
                         </div>
                         <hr/>
                     </div>
-                    <div class="Container50 Responsive50">
-                        <div class="ContainerIndent Responsive">
+                    <div class="Container50 MaintanceResponsive">
+                        <div class="ContainerIndent">
                             <p>
                                 <b>Seleccione el Estado del Veh&iacute;culo:</b>
                                 <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
@@ -178,8 +178,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="Container50 Responsive50">
-                        <div class="ContainerIndent Responsive">
+                    <div class="Container50 MaintanceResponsive">
+                        <div class="ContainerIndent">
                             <p>
                                 <b>Seleccione el Tipo de Veh&iacute;culo:</b>
                                 <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
@@ -199,8 +199,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="Container100 Responsive50">
-                        <div class="ContainerIndent Responsive">
+                    <div class="Container100">
+                        <div class="ContainerIndent">
                             <p>
 
                                 <button type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="regresar()">

@@ -4,7 +4,7 @@
     $page_maintance = true;
     require_once("config/page/header.php");
 
-    $TiposDeTelefono = array("Personal", "Familia", "Oficina", "Otro");
+    $TiposDeTelefono = array("Personal", "Familia", "Oficina", "Casa", "Otro");
 
     if(isset($_GET['Referencia'])) {
         $url_referencia = $_GET['Referencia'];
@@ -22,12 +22,12 @@
     $referencia = mysql_fetch_array(mysql_query("SELECT * FROM `referenciacliente` WHERE `IdReferenciaCliente` = '$IdReferenciaCliente'")); 
 ?>
 
-<div class="Container100 Responsive">
-    <div class="ContainerIndent Responsive">
+<div class="Container100">
+    <div class="ContainerIndent">
         <br/>
         <form method="post" action="" data-toggle="validator" role="form">
-            <div class="Container50 Responsive">
-                <div class="ContainerIndent Responsive">
+            <div class="Container50 MaintanceResponsive">
+                <div class="ContainerIndent">
                     <div class="Container100">
                         <div class="ContainerIndent TextAlCenter">
                             <h5>Datos del Referente</h5>
@@ -97,8 +97,8 @@
                     </div><br/>
                 </div>
             </div>
-            <div class="Container50 Responsive">
-                <div class="ContainerIndent Responsive">
+            <div class="Container50 MaintanceResponsive">
+                <div class="ContainerIndent">
                     <div class="Container100">
                         <div class="ContainerIndent TextAlCenter">
                             <h5>Datos de la Empresa</h5>
