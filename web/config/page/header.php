@@ -37,6 +37,7 @@
         <?php if (is_bool($page_maintance) === true): ?>
         <!-- Select -->
         <link rel="stylesheet" href="css/mdl-selectfield/dist/mdl-selectfield.min.css">
+        <link rel="stylesheet" href="css/mdl-select/getmdl-select.min.css" />
 
         <!-- Style for Inputs -->
         <style>
@@ -55,6 +56,11 @@
 
         <!-- jQuery Mask-Plugin -->
         <script type="text/javascript" src="js/jquery.mask.js"></script>
+
+        <!-- Stepper -->
+        <link rel="stylesheet" href="css/mdl-stepper/stepper.min.css">
+        <!-- Stepper Javascript minified -->
+        <script defer src="css/mdl-stepper/stepper.min.js"></script>
 
         <?php endif; ?>
         <?php endif; ?>

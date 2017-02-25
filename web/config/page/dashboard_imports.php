@@ -10,7 +10,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="css/mdl/MaterialIcons.css" />
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" />
 
     <!-- Bootstrap core CSS -->

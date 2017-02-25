@@ -69,7 +69,6 @@
                             <?php echo $row['FechaModificacion'] ?>
                         </div>
                     </div>
-
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
                     <button class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect">

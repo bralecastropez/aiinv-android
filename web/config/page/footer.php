@@ -52,6 +52,7 @@
     });
 
 </script>
+<script defer src="css/mdl-select/getmdl-select.min.js"></script>
 <?php endif; ?>
 <?php endif; ?>
 

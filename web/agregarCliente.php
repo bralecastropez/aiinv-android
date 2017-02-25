@@ -28,7 +28,6 @@
     } 
 ?>
 
-    <link rel="stylesheet" href="css/mdl-select/getmdl-select.min.css">
 
     <form action='' method='POST' style="margin: 20px;" data-toggle="validator" role="form">
         <h5>
@@ -40,9 +39,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <div>
-                        <p><b>Seleccione un Grupo:</b><br />
-                            <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                <select id="IdGrupo" name="IdGrupo" class="mdl-selectfield__select" required>
+                        <p><b>Seleccione un Grupo:</b></p>
+                        <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                            <select id="IdGrupo" name="IdGrupo" class="mdl-selectfield__select" required>
                                 <option value=""></option>
                                 <?php
                                     $query_grupo = mysql_query("SELECT * FROM `grupo`") or trigger_error(mysql_error()); 
@@ -54,9 +53,9 @@
                                 </option>
                                 <?php } ?>
                                 </select>
-                                <label class="mdl-textfield__label" for="IdGrupo">Grupo</label>
-                                <span class="mdl-selectfield__error">Seleccione un Grupo</span>
-                            </div>
+                            <label class="mdl-textfield__label" for="IdGrupo">Grupo</label>
+                            <span class="mdl-selectfield__error">Seleccione un Grupo</span>
+                        </div>
                     </div><br/>
                     <div>
                         <p><b>Ingrese un Nombre: </b></p>
@@ -83,49 +82,23 @@
                         </div>
                     </div><br/>
                     <div>
-                        <p><b>Seleccione un Estado Civil:</b>
-                            <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                <select id="EstadoCivil" name="EstadoCivil" class="mdl-selectfield__select" required>
+                        <p><b>Seleccione un Estado Civil:</b></p>
+                        <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                            <select id="EstadoCivil" name="EstadoCivil" class="mdl-selectfield__select" required>
                                 <option value=""></option>
                                 <option value="Soltero">Soltero</option>
                                 <option value="Casado">Casado</option>
                                 <option value="Viudo">Viudo</option>
                                 <option value="Divorciado">Divorciado</option>
                             </select>
-                                <label class="mdl-textfield__label" for="EstadoCivil">Estado Civil</label>
-                                <span class="mdl-selectfield__error">Seleccione un estado</span>
-                            </div>
+                            <label class="mdl-textfield__label" for="EstadoCivil">Estado Civil</label>
+                            <span class="mdl-selectfield__error">Seleccione un estado</span>
+                        </div>
                     </div><br/>
                 </div>
                 <div class="col-md-6">
                     <div>
                         <p><b>Seleccione un Sexo:</b></p>
-                        <!-- Simple Select -->
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
-                            <input class="mdl-textfield__input" type="text" id="sample1" value="Masculino" required readonly tabIndex="-1">
-                            <label for="sample1">
-                                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                            </label>
-                            <ul for="sample1" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                                <li class="mdl-menu__item">Masculino</li>
-                                <li class="mdl-menu__item">Femenino</li>
-                                <li class="mdl-menu__item">Otro</li>
-                            </ul>
-                        </div>
-                        <!-- Select with arrow-->
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
-                            <input class="mdl-textfield__input" type="text" id="sample2" value="Belarus" readonly tabIndex="-1">
-                            <label for="sample2">
-                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-            </label>
-                            <label for="sample2" class="mdl-textfield__label">Country</label>
-                            <ul for="sample2" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                                <li class="mdl-menu__item" data-val="DE">Germany</li>
-                                <li class="mdl-menu__item" data-val="BY">Belarus</li>
-                                <li class="mdl-menu__item" data-val="RU">Russia</li>
-                            </ul>
-                        </div>
-
                         <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
                             <select id="Sexo" name="Sexo" class="mdl-selectfield__select" required>
                                     <option value="" selected></option>
@@ -146,12 +119,12 @@
                         </div>
                     </div><br/>
                     <div>
-                        <p><b>Seleccione una Fecha de Nacimiento:</b><br />
-                            <div class="mdl-textfield mdl-js-textfield">
-                                <input type="text" id="FechaNacimiento" required name="FechaNacimiento" class="mdl-textfield__input">
-                                <label class="mdl-textfield__label" for="FechaNacimiento">Fecha de Nacimiento</label>
-                                <span class="mdl-textfield__error">Debe seleccionar una fecha v&aacute;lida</span>
-                            </div>
+                        <p><b>Seleccione una Fecha de Nacimiento:</b></p>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input type="text" id="FechaNacimiento" required name="FechaNacimiento" class="mdl-textfield__input">
+                            <label class="mdl-textfield__label" for="FechaNacimiento">Fecha de Nacimiento</label>
+                            <span class="mdl-textfield__error">Debe seleccionar una fecha v&aacute;lida</span>
+                        </div>
                     </div><br/>
                     <div>
                         <p><b>NIT: </b></p>
@@ -162,15 +135,15 @@
                         </div>
                     </div><br/>
                     <div>
-                        <p><b>L&iacute;mite de Cr&eacute;dito:</b>
-                            <div class="input-group">
-                                <span class="input-group-addon">Q</span>
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input creditodecimal" type="text" name="LimiteCredito" id="LimiteCredito" required />
-                                    <span class="mdl-textfield__error">Debe ingresar un n&uacute;mero v&aacute;lido</span>
-                                </div>
-                                <span class="input-group-addon">.00</span>
+                        <p><b>L&iacute;mite de Cr&eacute;dito:</b></p>
+                        <div class="input-group">
+                            <span class="input-group-addon">Q</span>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input creditodecimal" type="text" name="LimiteCredito" id="LimiteCredito" required />
+                                <span class="mdl-textfield__error">Debe ingresar un n&uacute;mero v&aacute;lido</span>
                             </div>
+                            <span class="input-group-addon">.00</span>
+                        </div>
                     </div><br/>
                 </div>
 
@@ -191,5 +164,3 @@
 
 
     <?php require_once("config/page/footer.php"); ?>
-
-    <script defer src="css/mdl-select/getmdl-select.min.js"></script>
